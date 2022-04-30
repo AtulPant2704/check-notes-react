@@ -18,6 +18,14 @@ body {
   background-color: var(--container-color);
 }
 
+#root {
+  height: 100%;
+}
+
+.App {
+  height: 100%;
+}
+
 h1,
 h2,
 h3,
