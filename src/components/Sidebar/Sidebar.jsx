@@ -12,7 +12,7 @@ const SideBar = () => {
         <div>
           <div className="nav-brand">
             <span
-              class="material-icons-outlined toggle-menu"
+              className="material-icons-outlined toggle-menu"
               onClick={() => setSideExpand((prev) => !prev)}
             >
               menu
@@ -23,14 +23,16 @@ const SideBar = () => {
           </div>
           <div className="nav-list">
             <Link to="/notes" className="nav-link active">
-              <span class="material-icons-outlined nav-icon">lightbulb</span>
+              <span className="material-icons-outlined nav-icon">
+                lightbulb
+              </span>
               <span className="nav-name">Notes</span>
             </Link>
             <div className="nav-link collapse">
-              <span class="material-icons-outlined nav-icon">edit</span>
+              <span className="material-icons-outlined nav-icon">edit</span>
               <span className="nav-name">Labels</span>
               <span
-                class={`material-icons-outlined collapse-link ${
+                className={`material-icons-outlined collapse-link ${
                   labelCollapse ? "rotate" : ""
                 }`}
                 onClick={() => setLabelCollapse((prev) => !prev)}
@@ -43,22 +45,22 @@ const SideBar = () => {
                 }`}
               >
                 <Link to="/label" className="collapse-sublink">
-                  <span class="material-icons-outlined">sell</span> Label 1
+                  <span className="material-icons-outlined">sell</span> Label 1
                 </Link>
                 <Link to="/label" className="collapse-sublink">
-                  <span class="material-icons-outlined">label</span> Label 2
+                  <span className="material-icons-outlined">label</span> Label 2
                 </Link>
                 <Link to="/label" className="collapse-sublink">
-                  <span class="material-icons-outlined">label</span> Label 3
+                  <span className="material-icons-outlined">label</span> Label 3
                 </Link>
               </ul>
             </div>
             <Link to="/archive" className="nav-link">
-              <span class="material-icons-outlined nav-icon">archive</span>
+              <span className="material-icons-outlined nav-icon">archive</span>
               <span className="nav-name">Archive</span>
             </Link>
-            <Link to="/delete" className="nav-link">
-              <span class="material-icons-outlined nav-icon">
+            <Link to="/trash" className="nav-link">
+              <span className="material-icons-outlined nav-icon">
                 delete_outline
               </span>
               <span className="nav-name">Trash</span>
@@ -66,7 +68,7 @@ const SideBar = () => {
           </div>
         </div>
         <Link to="/" className="nav-link">
-          <span class="material-icons-outlined nav-icon">logout</span>
+          <span className="material-icons-outlined nav-icon">logout</span>
           <span className="nav-name">Log Out</span>
         </Link>
       </nav>
