@@ -48,3 +48,7 @@ a {
   text-align: center;
   margin-top: 2rem;
 }
+
+iframe {
+  pointer-events: none;
+}

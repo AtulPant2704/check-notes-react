@@ -1,11 +1,26 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { landingImage } from "../../assets";
 import { LoginModal, SignupModal } from "../../components";
 import "./Landing.css";
 
 const Landing = () => {
+  const [modalType, setModalType] = useState(null);
+
   return (
     <>
-      <section className="backdrop"></section>
+      {modalType ? (
+        <section
+          className="backdrop"
+          onClick={() => setModalType(null)}
+        ></section>
+      ) : null}
+      {modalType === "login" ? (
+        <LoginModal setModalType={setModalType} />
+      ) : null}
+      {modalType === "signup" ? (
+        <SignupModal setModalType={setModalType} />
+      ) : null}
 
       <section className="landing-page">
         <div className="intro-text">
@@ -14,16 +29,21 @@ const Landing = () => {
           </h1>
           <p className="para">Take Notes the simple way for free. Forever.</p>
           <div className="btn-container">
-            <button className="btn btn-solid-primary signup-btn">
+            <button
+              className="btn btn-solid-primary signup-btn"
+              onClick={() => setModalType("signup")}
+            >
               Sign Up
             </button>
-            <a href="./notes/notes.html">
+            <Link to="./notes/notes.html">
               <button className="btn btn-outline-primary add-note-btn">
                 Add Note
               </button>
-            </a>
+            </Link>
           </div>
-          <button className="login-btn">Already have an account?</button>
+          <button className="login-btn" onClick={() => setModalType("login")}>
+            Already have an account?
+          </button>
         </div>
         <div className="intro-img">
           <img

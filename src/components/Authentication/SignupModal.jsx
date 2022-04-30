@@ -1,6 +1,6 @@
 import "./Auth.css";
 
-const SignupModal = () => {
+const SignupModal = ({ setModalType }) => {
   return (
     <div className="form-wrapper signup-form">
       <h2 className="form-heading">Signup</h2>
@@ -44,8 +44,11 @@ const SignupModal = () => {
           Create New Account
         </button>
       </form>
-      <button className="new-account login-account">
-        Already have an Account{" "}
+      <button
+        className="new-account login-account"
+        onClick={() => setModalType("login")}
+      >
+        Already have an Account
         <ion-icon
           name="chevron-forward-outline"
           className="signup-icon"

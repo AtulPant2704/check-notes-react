@@ -1,10 +1,13 @@
 .form-wrapper {
   background-color: var(--container-color);
   width: 20rem;
-  border: none;
+  border-width: 0;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: block;
+  z-index: 2;
 }
 
 .form-heading {
@@ -29,36 +32,22 @@
   display: flex;
   align-items: center;
   text-align: center;
-  border: none;
+  border-width: 0;
   background-color: transparent;
   font-size: 1rem;
   cursor: pointer;
   margin: auto;
 }
 
+.form-wrapper .user-history {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .new-account .signup-icon {
   margin-left: 5px;
   font-size: 1.25rem;
-}
-
-.login-form {
-  position: fixed;
-  display: none;
-}
-
-.login-form-active {
-  display: block;
-  z-index: 2;
-}
-
-.signup-form {
-  position: fixed;
-  display: none;
-}
-
-.signup-form-active {
-  display: block;
-  z-index: 2;
 }
 
 .form-username label {
@@ -79,6 +68,5 @@
   border-radius: 5px;
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
-  outline: none;
   font-size: 0.8rem;
 }
