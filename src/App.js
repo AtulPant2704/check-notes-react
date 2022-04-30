@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Landing } from "./pages";
+import { Landing, Trash } from "./pages";
 import "./App.css";
 
 function App() {
@@ -7,6 +7,10 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/notes" element={<Landing />} />
+        <Route path="/label" element={<Landing />} />
+        <Route path="/archive" element={<Landing />} />
+        <Route path="/trash" element={<Trash />} />
       </Routes>
     </div>
   );
