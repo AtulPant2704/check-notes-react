@@ -45,7 +45,7 @@ const SideBar = () => {
                 }`}
               >
                 <Link to="/label" className="collapse-sublink">
-                  <span className="material-icons-outlined">sell</span> Label 1
+                  <span className="material-icons-outlined">label</span> Label 1
                 </Link>
                 <Link to="/label" className="collapse-sublink">
                   <span className="material-icons-outlined">label</span> Label 2
