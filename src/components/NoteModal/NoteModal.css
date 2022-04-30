@@ -1,0 +1,83 @@
+/* Add Note Container Styling */
+.add-note-container {
+  position: fixed;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  border: 1px solid var(--primary-color);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: var(--container-color);
+}
+
+.note-title {
+  background-color: var(--container-color);
+  border: none;
+  outline: none;
+  font-size: 1.25rem;
+  color: var(--text-color-light);
+}
+
+.note-content {
+  margin-top: 1rem;
+  background-color: var(--container-color);
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  color: var(--text-color-light);
+  resize: none;
+}
+
+.add-note-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-select {
+  display: flex;
+  gap: 1rem;
+}
+
+.select-label {
+  color: var(--title-color);
+  margin-right: 5px;
+}
+
+.select {
+  border-radius: 0.5rem;
+}
+
+.close-note-btn {
+  color: var(--title-color);
+  background-color: var(--container-color);
+  cursor: pointer;
+}
+
+.close-note-btn:hover {
+  background-color: transparent;
+}
+
+@media screen and (max-width: 850px) {
+  .add-note-container {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .add-note-container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .add-note-container {
+    width: 95%;
+  }
+}
