@@ -16,8 +16,6 @@ const Notes = () => {
       ) : null}
       {showNoteModal ? <NoteModal setShowNoteModal={setShowNoteModal} /> : null}
 
-      <SideBar />
-
       <main className="main">
         <section className="search-filter-section">
           <div className="search">
