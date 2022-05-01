@@ -70,3 +70,13 @@
   margin-bottom: 1rem;
   font-size: 0.8rem;
 }
+
+.btn-guest-note {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.btn-guest-note:hover {
+  background-color: transparent;
+}
