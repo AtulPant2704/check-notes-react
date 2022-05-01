@@ -1,0 +1,97 @@
+/* Add Note Container Styling */
+.add-note-container {
+  position: fixed;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  border: 1px solid var(--primary-color);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: var(--text-color-light);
+}
+
+.note-title {
+  background-color: var(--text-color-light);
+  font-size: 1.25rem;
+  color: var(--secondary-color);
+  padding: 0.5rem;
+  border: 1px solid var(--secondary-color);
+}
+
+.note-title::placeholder {
+  color: var(--secondary-color);
+}
+
+.note-content {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  height: 15rem;
+}
+
+.ql-toolbar.ql-snow,
+.ql-container.ql-snow {
+  border: 1px solid var(--secondary-color);
+}
+
+.ql-editor * {
+  color: var(--secondary-color);
+  font-size: 1rem;
+}
+
+.ql-editor.ql-blank::before {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  font-style: normal;
+  font-family: inherit;
+}
+
+.add-note-footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-select {
+  display: flex;
+  gap: 1rem;
+}
+
+.select-label {
+  color: var(--secondary-color);
+  margin-right: 5px;
+}
+
+.select {
+  border-radius: 0.5rem;
+  padding: 4px;
+}
+
+.close-note-btn {
+  padding: 5px 10px;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 850px) {
+  .add-note-container {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .add-note-container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .add-note-container {
+    width: 95%;
+  }
+}

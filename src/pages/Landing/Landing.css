@@ -1,0 +1,92 @@
+.backdrop {
+  position: fixed;
+  display: block;
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.landing-page {
+  display: flex;
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-text {
+  width: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.intro-img {
+  width: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.intro-text .title {
+  font-size: 2rem;
+}
+
+.title span {
+  color: white;
+}
+
+.intro-text .para {
+  margin: 2rem auto;
+  color: white;
+}
+
+.intro-text .para {
+  font-size: 1rem;
+}
+
+.btn-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.add-note-btn {
+  color: white;
+  background-color: transparent;
+  border-color: white;
+}
+
+.add-note-btn:hover {
+  background-color: transparent;
+}
+
+.intro-text .login-btn {
+  display: block;
+  margin-top: 1rem;
+  color: var(--primary-color-lighter);
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .landing-page {
+    flex-direction: column;
+  }
+
+  .intro-text {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .intro-img {
+    width: 80%;
+    order: -1;
+  }
+}

@@ -1,0 +1,72 @@
+.form-wrapper {
+  background-color: var(--container-color);
+  width: 20rem;
+  border-width: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  z-index: 2;
+}
+
+.form-heading {
+  color: var(--title-color);
+  text-align: center;
+}
+
+.form-wrapper label {
+  color: var(--text-color);
+}
+
+.form-wrapper .btn-submit {
+  background-color: var(--primary-color);
+}
+
+.form-wrapper .btn-submit:hover {
+  background-color: var(--primary-hover-color);
+}
+
+.form-wrapper .new-account {
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border-width: 0;
+  background-color: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: auto;
+}
+
+.form-wrapper .user-history {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.new-account .signup-icon {
+  margin-left: 5px;
+  font-size: 1.25rem;
+}
+
+.form-username label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.form-confirm-password label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.form-username input,
+.form-confirm-password input {
+  width: 100%;
+  border: 1px solid var(--default-color);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}

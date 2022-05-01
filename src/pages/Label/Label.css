@@ -1,0 +1,11 @@
+.label-page {
+  width: calc(100% - 80px);
+  margin-left: 75px;
+}
+
+.label-notes-container {
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 1rem;
+}
