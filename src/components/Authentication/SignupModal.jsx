@@ -45,6 +45,7 @@ const SignupModal = ({ setModalType }) => {
         try {
           const response = await signUpService(user);
           if (response.status === 201) {
+            console.log("here");
             navigate("/notes");
             if (saveUser) {
               localStorage.setItem("token", response.data.encodedToken);
@@ -78,7 +79,7 @@ const SignupModal = ({ setModalType }) => {
       <h2 className="form-heading">Signup</h2>
       <form>
         <div className="form-username">
-          <label for="name">Full Name</label>
+          <label htmlFor="name">Full Name</label>
           <input
             id="name"
             type="text"
@@ -90,7 +91,7 @@ const SignupModal = ({ setModalType }) => {
           />
         </div>
         <div className="form-email">
-          <label for="email">Email address</label>
+          <label htmlFor="email">Email address</label>
           <input
             id="email"
             type="email"
@@ -102,7 +103,7 @@ const SignupModal = ({ setModalType }) => {
           />
         </div>
         <div className="form-password">
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             id="password"
             type="password"
@@ -114,7 +115,7 @@ const SignupModal = ({ setModalType }) => {
           />
         </div>
         <div className="form-confirm-password">
-          <label for="confirm-password">Confirm Password</label>
+          <label htmlFor="confirm-password">Confirm Password</label>
           <input
             id="confirm-password"
             type="password"
@@ -134,7 +135,7 @@ const SignupModal = ({ setModalType }) => {
               e.target.checked ? setSaveUser(true) : setSaveUser(false)
             }
           />
-          <label for="user-request">I accept all Terms & Conditions</label>
+          <label htmlFor="user-request">I accept all Terms & Conditions</label>
         </div>
         <button type="submit" className="btn-submit" onClick={signUpHandler}>
           Create New Account
