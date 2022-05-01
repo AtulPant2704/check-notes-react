@@ -110,3 +110,19 @@
   transform: rotate(180deg);
   transition: 0.5s;
 }
+
+.add-label-btn {
+  border-width: 0;
+  background-color: initial;
+  width: max-content;
+  padding: 2px 5px;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.add-label-btn:hover {
+  color: white;
+}
