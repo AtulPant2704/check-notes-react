@@ -1,11 +1,25 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAuth } from "../../context";
 import { landingImage } from "../../assets";
 import { LoginModal, SignupModal } from "../../components";
 import "./Landing.css";
 
 const Landing = () => {
+  const navigate = useNavigate();
   const [modalType, setModalType] = useState(null);
+  const {
+    authState: { token },
+  } = useAuth();
+
+  const navigateHandler = () => {
+    if (token) {
+      navigate("/notes");
+    } else {
+      toast.warning("You're not logged in");
+    }
+  };
 
   return (
     <>
@@ -35,11 +49,11 @@ const Landing = () => {
             >
               Sign Up
             </button>
-            <Link to="/notes">
+            <div onClick={navigateHandler}>
               <button className="btn btn-outline-primary add-note-btn">
                 Add Note
               </button>
-            </Link>
+            </div>
           </div>
           <button className="login-btn" onClick={() => setModalType("login")}>
             Already have an account?
