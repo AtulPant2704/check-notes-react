@@ -10,6 +10,15 @@ const SideBar = () => {
   const [showLabelModal, setShowLabelModal] = useState(false);
   const path = location.pathname;
 
+  const expandHandler = () => {
+    if (sideExpand === true) {
+      setSideExpand(false);
+      setLabelCollapse(false);
+    } else {
+      setSideExpand(true);
+    }
+  };
+
   return (
     <>
       {showLabelModal ? (
@@ -24,7 +33,7 @@ const SideBar = () => {
             <div className="nav-brand">
               <span
                 className="material-icons-outlined toggle-menu"
-                onClick={() => setSideExpand((prev) => !prev)}
+                onClick={expandHandler}
               >
                 menu
               </span>
@@ -37,7 +46,10 @@ const SideBar = () => {
                 to="/notes"
                 className={`nav-link ${path === "/notes" ? "active" : ""}`}
               >
-                <span className="material-icons-outlined nav-icon">
+                <span
+                  title="Notes"
+                  className="material-icons-outlined nav-icon"
+                >
                   lightbulb
                 </span>
                 <span className="nav-name">Notes</span>
@@ -47,7 +59,12 @@ const SideBar = () => {
                   labelCollapse || path === "/label" ? "active" : ""
                 }`}
               >
-                <span className="material-icons-outlined nav-icon">edit</span>
+                <span
+                  title="Label"
+                  className="material-icons-outlined nav-icon"
+                >
+                  edit
+                </span>
                 <span className="nav-name">Labels</span>
                 <span
                   className={`material-icons-outlined collapse-link ${
@@ -87,7 +104,10 @@ const SideBar = () => {
                 to="/archive"
                 className={`nav-link ${path === "/archive" ? "active" : ""}`}
               >
-                <span className="material-icons-outlined nav-icon">
+                <span
+                  title="Archive"
+                  className="material-icons-outlined nav-icon"
+                >
                   archive
                 </span>
                 <span className="nav-name">Archive</span>
@@ -96,7 +116,10 @@ const SideBar = () => {
                 to="/trash"
                 className={`nav-link ${path === "/trash" ? "active" : ""}`}
               >
-                <span className="material-icons-outlined nav-icon">
+                <span
+                  title="Trash"
+                  className="material-icons-outlined nav-icon"
+                >
                   delete_outline
                 </span>
                 <span className="nav-name">Trash</span>
@@ -104,7 +127,9 @@ const SideBar = () => {
             </div>
           </div>
           <Link to="/" className="nav-link">
-            <span className="material-icons-outlined nav-icon">logout</span>
+            <span title="Logout" className="material-icons-outlined nav-icon">
+              logout
+            </span>
             <span className="nav-name">Log Out</span>
           </Link>
         </nav>
