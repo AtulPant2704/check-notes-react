@@ -11,6 +11,10 @@
   --text-color-light: hsl(var(--hue-color), 8%, 65%);
   --input-color: hsl(var(--hue-color), 29%, 16%);
   --container-color: hsl(var(--hue-color), 29%, 16%);
+  --toastify-color-info: #202528;
+  --toastify-color-success: #558d14;
+  --toastify-color-warning: #ff9204;
+  --toastify-color-error: #d61010;
 }
 
 body {
