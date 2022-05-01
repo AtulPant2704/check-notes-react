@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAuth } from "../../context";
 import { AddLabelModal } from "../AddLabelModal/AddLabelModal";
 import "./Sidebar.css";
 
 const SideBar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [sideExpand, setSideExpand] = useState(false);
   const [labelCollapse, setLabelCollapse] = useState(false);
   const [showLabelModal, setShowLabelModal] = useState(false);
+  const { authDispatch } = useAuth();
   const path = location.pathname;
 
   const expandHandler = () => {
@@ -17,6 +21,14 @@ const SideBar = () => {
     } else {
       setSideExpand(true);
     }
+  };
+
+  const logoutHandler = () => {
+    navigate("/");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    authDispatch({ type: "LOGOUT" });
+    toast.success("Successfully Logged Out");
   };
 
   return (
@@ -126,12 +138,12 @@ const SideBar = () => {
               </Link>
             </div>
           </div>
-          <Link to="/" className="nav-link">
+          <div className="nav-link" onClick={logoutHandler}>
             <span title="Logout" className="material-icons-outlined nav-icon">
               logout
             </span>
             <span className="nav-name">Log Out</span>
-          </Link>
+          </div>
         </nav>
       </header>
     </>
