@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { RequiresAuth } from "./RequiresAuth";
 import { SideBar } from "./components";
-import { Landing, Trash, Archive, Notes, Label } from "./pages";
+import { Landing, Trash, Archive, Notes, Label, Error404 } from "./pages";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -24,7 +24,12 @@ function App() {
         pauseOnHover
       />
 
-      {location.pathname !== "/" ? <SideBar /> : null}
+      {location.pathname === "/notes" ||
+      location.pathname === "/label" ||
+      location.pathname === "/archive" ||
+      location.pathname === "/trash" ? (
+        <SideBar />
+      ) : null}
 
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -60,6 +65,7 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
   );
