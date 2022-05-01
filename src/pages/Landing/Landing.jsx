@@ -35,7 +35,7 @@ const Landing = () => {
             >
               Sign Up
             </button>
-            <Link to="./notes">
+            <Link to="/notes">
               <button className="btn btn-outline-primary add-note-btn">
                 Add Note
               </button>
