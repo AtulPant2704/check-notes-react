@@ -13,27 +13,25 @@
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
   border-radius: 0.5rem;
   padding: 1rem;
-  background-color: var(--container-color);
+  background-color: var(--text-color-light);
 }
 
 .note-title {
-  background-color: var(--container-color);
+  background-color: var(--text-color-light);
   font-size: 1.25rem;
-  color: var(--text-color-light);
+  color: var(--title-color);
   padding: 0.5rem;
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--title-color);
+}
+
+.note-title::placeholder {
+  color: var(--title-color);
 }
 
 .note-content {
   margin: 1rem 0;
-  background-color: var(--container-color);
   font-size: 1.1rem;
   height: 15rem;
-}
-
-.note-content::placeholder {
-  font-size: 4rem;
-  color: white;
 }
 
 .add-note-footer {
