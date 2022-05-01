@@ -45,8 +45,6 @@ const SignupModal = ({ setModalType }) => {
         try {
           const response = await signUpService(user);
           if (response.status === 201) {
-            console.log("here");
-            navigate("/notes");
             if (saveUser) {
               localStorage.setItem("token", response.data.encodedToken);
               localStorage.setItem(
@@ -61,6 +59,7 @@ const SignupModal = ({ setModalType }) => {
                 token: response.data.encodedToken,
               },
             });
+            navigate("/notes");
             toast.success("Successfully Signed up");
           } else {
             throw new Error("Something went wrong! Please try again later");
