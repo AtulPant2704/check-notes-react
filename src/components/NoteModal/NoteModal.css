@@ -18,23 +18,26 @@
 
 .note-title {
   background-color: var(--container-color);
-  border: none;
-  outline: none;
   font-size: 1.25rem;
   color: var(--text-color-light);
+  padding: 0.5rem;
+  border: 1px solid var(--text-color);
 }
 
 .note-content {
-  margin-top: 1rem;
+  margin: 1rem 0;
   background-color: var(--container-color);
-  border: none;
-  outline: none;
   font-size: 1.1rem;
-  color: var(--text-color-light);
-  resize: none;
+  height: 15rem;
+}
+
+.note-content::placeholder {
+  font-size: 4rem;
+  color: white;
 }
 
 .add-note-footer {
+  margin-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,16 +55,6 @@
 
 .select {
   border-radius: 0.5rem;
-}
-
-.close-note-btn {
-  color: var(--title-color);
-  background-color: var(--container-color);
-  cursor: pointer;
-}
-
-.close-note-btn:hover {
-  background-color: transparent;
 }
 
 @media screen and (max-width: 850px) {

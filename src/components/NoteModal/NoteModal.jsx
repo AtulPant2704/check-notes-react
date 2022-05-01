@@ -1,21 +1,15 @@
+import { RichTextEditor } from "../RichTextEditor/RichTextEditor";
 import "./NoteModal.css";
 
 const NoteModal = ({ setShowNoteModal }) => {
   return (
     <div className="add-note-container">
       <input type="text" className="note-title" placeholder="Enter title" />
-      <textarea
-        name="note-para"
-        id="note-para"
-        cols="30"
-        rows="10"
-        className="note-content"
-        placeholder="Enter content..."
-      ></textarea>
+      <RichTextEditor />
       <div className="add-note-footer">
         <div className="note-select">
           <div className="select-box">
-            <label for="label-select" className="select-label">
+            <label htmlFor="label-select" className="select-label">
               Label:
             </label>
             <select id="label-select" className="select">
@@ -25,7 +19,7 @@ const NoteModal = ({ setShowNoteModal }) => {
             </select>
           </div>
           <div className="select-box">
-            <label for="priority-select" className="select-label">
+            <label htmlFor="priority-select" className="select-label">
               Priority:
             </label>
             <select id="priority-select" className="select">
@@ -35,7 +29,7 @@ const NoteModal = ({ setShowNoteModal }) => {
             </select>
           </div>
           <div className="select-box">
-            <label for="color-select" className="select-label">
+            <label htmlFor="color-select" className="select-label">
               Color:
             </label>
             <select id="color-select" className="select">
@@ -46,7 +40,7 @@ const NoteModal = ({ setShowNoteModal }) => {
           </div>
         </div>
         <button
-          className="btn btn-text-primary close-note-btn"
+          className="btn btn-solid-primary close-note-btn"
           onClick={() => setShowNoteModal(false)}
         >
           Close
