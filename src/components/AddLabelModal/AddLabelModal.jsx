@@ -15,6 +15,7 @@ const AddLabelModal = ({ showLabelModal, setShowLabelModal }) => {
           type="text"
           placeholder="Enter Label Name"
           className="input-label"
+          autoFocus
         />
         <button
           className="btn btn-solid-primary btn-save-label"
