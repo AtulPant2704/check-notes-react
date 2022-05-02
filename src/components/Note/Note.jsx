@@ -1,13 +1,19 @@
+import ReactHtmlParser from "react-html-parser";
 import "./Note.css";
 
-const Note = () => {
+const Note = ({ note, setShowNoteModal, setEditNote }) => {
+  const editNoteHandler = () => {
+    setEditNote(note);
+    setShowNoteModal(true);
+  };
+
   return (
-    <div className="note">
+    <div className="note" onClick={editNoteHandler}>
       <button className="pin-btn">
         <span className="material-icons-outlined">push_pin</span>
       </button>
-      <h2>Title</h2>
-      <h4>Content</h4>
+      <h2>{note.title}</h2>
+      {ReactHtmlParser(note.content)}
       <div className="note-footer">
         <p className="note-date">02/04/2020 05:20</p>
         <div className="note-action-btns">
@@ -19,7 +25,7 @@ const Note = () => {
           <button className="action-btn">
             <span className="material-icons-outlined nav-icon">archive</span>
           </button>
-          <button className="action-btn">
+          <button className="action-btn" onClick={editNoteHandler}>
             <span className="material-icons-outlined nav-icon">edit</span>
           </button>
         </div>

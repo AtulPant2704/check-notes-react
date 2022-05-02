@@ -6,6 +6,11 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  max-width: 20rem;
+}
+
+.note > p {
+  overflow-wrap: break-word;
 }
 
 .pin-btn {
