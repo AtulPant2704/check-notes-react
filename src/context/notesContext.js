@@ -1,10 +1,10 @@
 import { createContext, useContext, useReducer } from "react";
-import { noteReducer } from "../reducer";
+import { notesReducer } from "../reducer";
 
 const NotesContext = createContext(null);
 
 const NotesProvider = ({ children }) => {
-  const [notesState, notesDispatch] = useReducer(noteReducer, { notes: [] });
+  const [notesState, notesDispatch] = useReducer(notesReducer, { notes: [] });
 
   return (
     <NotesContext.Provider value={{ notesState, notesDispatch }}>
