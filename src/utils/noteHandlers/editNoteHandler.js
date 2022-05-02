@@ -5,7 +5,6 @@ const editNoteHandler = async (token, note, notesDispatch) => {
   try {
     const response = await editNoteService(token, note);
     if (response.status === 201) {
-      console.log(response);
       notesDispatch({ type: "EDIT_NOTE", payload: response.data.notes });
       toast.success("Note edited successfully");
     } else {

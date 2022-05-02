@@ -21,8 +21,6 @@ const Notes = () => {
     getNotesHandler(token, notesDispatch);
   }, []);
 
-  console.log(notes);
-
   return (
     <>
       {showNoteModal ? (
