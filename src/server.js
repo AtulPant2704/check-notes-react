@@ -16,6 +16,7 @@ import {
   updateNoteHandler,
 } from "./backend/controllers/NotesController";
 import { users } from "./backend/db/users";
+import { v4 as uuid } from "uuid";
 
 export function makeServer({ environment = "development" } = {}) {
   const server = new Server({
@@ -34,7 +35,16 @@ export function makeServer({ environment = "development" } = {}) {
       users.forEach((item) =>
         server.create("user", {
           ...item,
-          notes: [],
+          notes: [
+            {
+              _id: uuid(),
+              title: "Hello",
+              content: "<p>World</p>",
+              label: "",
+              color: "",
+              priority: "",
+            },
+          ],
           archives: [],
         })
       );
