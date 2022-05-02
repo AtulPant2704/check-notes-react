@@ -15,6 +15,11 @@ const notesReducer = (state, action) => {
         ...state,
         notes: action.payload,
       };
+    case "REMOVE_NOTE":
+      return {
+        ...state,
+        notes: action.payload,
+      };
     default:
       return state;
   }
