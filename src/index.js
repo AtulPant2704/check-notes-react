@@ -7,7 +7,7 @@ import {
   AuthProvider,
   NotesProvider,
   ArchiveProvider,
-  DeleteProvider,
+  TrashProvider,
 } from "./context";
 
 // Call make Server
@@ -18,11 +18,11 @@ ReactDOM.render(
     <AuthProvider>
       <NotesProvider>
         <ArchiveProvider>
-          <DeleteProvider>
+          <TrashProvider>
             <Router>
               <App />
             </Router>
-          </DeleteProvider>
+          </TrashProvider>
         </ArchiveProvider>
       </NotesProvider>
     </AuthProvider>

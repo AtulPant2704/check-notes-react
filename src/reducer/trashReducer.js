@@ -1,16 +1,16 @@
-const deleteReducer = (state, action) => {
+const trashReducer = (state, action) => {
   switch (action.type) {
-    case "GET_DELETE":
+    case "GET_TRASH":
       return {
         ...state,
         delete: action.payload,
       };
-    case "ADD_NOTE_TO_DELETE":
+    case "ADD_NOTE_TO_TRASH":
       return {
         ...state,
         delete: action.payload,
       };
-    case "REMOVE_NOTE_FROM_DELETE":
+    case "REMOVE_NOTE_FROM_TRASH":
       return {
         ...state,
         delete: action.payload,
@@ -20,4 +20,4 @@ const deleteReducer = (state, action) => {
   }
 };
 
-export { deleteReducer };
+export { trashReducer };
