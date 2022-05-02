@@ -10,7 +10,7 @@ const notesReducer = (state, action) => {
         ...state,
         notes: action.payload,
       };
-    case "EDIT_NODE":
+    case "EDIT_NOTE":
       return {
         ...state,
         notes: action.payload,
