@@ -15,7 +15,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
       <h2>{note.title}</h2>
       {ReactHtmlParser(note.content)}
       <div className="note-footer">
-        <p className="note-date">02/04/2020 05:20</p>
+        <p className="note-date">{note.date}</p>
         <div className="note-action-btns">
           <button className="action-btn">
             <span className="material-icons-outlined nav-icon">

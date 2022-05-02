@@ -35,11 +35,24 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
     }
   };
 
+  const getDate = () => {
+    const date = new Date();
+    const currentDate = date.toLocaleDateString();
+    const currentTime = date.toLocaleTimeString("en-US", {
+      hour12: false,
+      hour: "numeric",
+      minute: "numeric",
+    });
+    return currentDate + " " + currentTime;
+  };
+
   const saveNoteHandler = () => {
+    const currentDate = getDate();
+    const note = { ...newNote, date: currentDate };
     if (checkInputs()) {
       editNote
-        ? editNoteHandler(token, newNote, notesDispatch)
-        : addNoteHandler(token, newNote, notesDispatch);
+        ? editNoteHandler(token, note, notesDispatch)
+        : addNoteHandler(token, note, notesDispatch);
       setEditNote(null);
       setShowNoteModal(false);
     }
