@@ -77,7 +77,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
               onClick={restoreNoteFromTrash}
             >
               <span className="material-icons-outlined nav-icon">
-                <span className="material-icons-outlined">
+                <span className="material-icons-outlined nav-icon">
                   restore_from_trash
                 </span>
               </span>
@@ -97,7 +97,9 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
               className="action-btn"
               onClick={restoreNoteFromArchive}
             >
-              <span className="material-icons-outlined">unarchive</span>
+              <span className="material-icons-outlined nav-icon">
+                unarchive
+              </span>
             </button>
           )}
           {pathname !== "/archive" && pathname !== "/trash" ? (
