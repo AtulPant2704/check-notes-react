@@ -9,3 +9,4 @@ export { addNoteToArchiveService } from "./archiveServices/addNoteToArchive.serv
 export { restoreNoteFromArchiveService } from "./archiveServices/restoreNoteFromArchive.service";
 export { deleteNoteFromArchiveService } from "./archiveServices/deleteNoteFromArchive.service";
 export { getTrashService } from "./trashServices/getTrash.service";
+export { restoreNoteFromTrashService } from "./trashServices/restoreNoteFromTrash.service";

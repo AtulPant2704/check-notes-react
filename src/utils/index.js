@@ -7,3 +7,4 @@ export { addNoteToArchiveHandler } from "./archiveHandlers/addNoteToArchiveHandl
 export { restoreNoteFromArchiveHandler } from "./archiveHandlers/restoreNoteFromArchiveHandler";
 export { deleteNoteFromArchiveHandler } from "./archiveHandlers/deleteNoteFromArchiveHandler";
 export { getTrashHandler } from "./trashHandlers/getTrashHandler";
+export { restoreNoteFromTrashHandler } from "./trashHandlers/restoreNoteFromTrashHandler";
