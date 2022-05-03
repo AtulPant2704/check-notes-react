@@ -15,6 +15,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  word-break: break-all;
 }
 
 .pin-btn {
@@ -55,4 +56,10 @@
 
 .action-btn:nth-child(2) {
   margin: auto 0.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .note-action-btns {
+    opacity: 1;
+  }
 }
