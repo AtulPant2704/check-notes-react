@@ -6,6 +6,7 @@ import {
   restoreNoteFromArchiveHandler,
   deleteNoteHandler,
   deleteNoteFromArchiveHandler,
+  restoreNoteFromTrashHandler,
 } from "../../utils";
 import "./Note.css";
 
@@ -37,6 +38,11 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
     }
   };
 
+  const restoreNoteFromTrash = (e) => {
+    e.stopPropagation();
+    restoreNoteFromTrashHandler(token, note, trashDispatch, notesDispatch);
+  };
+
   const editNoteHandler = () => {
     setEditNote(note);
     setShowNoteModal(true);
@@ -52,7 +58,12 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
       <div className="note-footer">
         <p className="note-date">{note.date}</p>
         <div className="note-action-btns">
-          <button className="action-btn" onClick={addNoteToTrash}>
+          <button
+            className="action-btn"
+            onClick={
+              pathname !== "/trash" ? addNoteToTrash : restoreNoteFromTrash
+            }
+          >
             <span className="material-icons-outlined nav-icon">
               delete_outline
             </span>

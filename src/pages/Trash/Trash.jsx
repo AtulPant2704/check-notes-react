@@ -17,8 +17,6 @@ const Trash = () => {
     getTrashHandler(token, trashDispatch);
   }, []);
 
-  console.log(trash);
-
   return (
     <>
       <main className="delete-page">
