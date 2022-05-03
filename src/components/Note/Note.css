@@ -27,6 +27,11 @@
   word-break: break-all;
 }
 
+.note > p > img {
+  height: 50px;
+  width: 50px;
+}
+
 .pin-btn {
   position: absolute;
   top: 12px;
