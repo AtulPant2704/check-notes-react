@@ -6,6 +6,35 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  max-width: 20rem;
+}
+
+.note > h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  word-break: break-all;
+}
+
+.note > p {
+  display: none;
+}
+
+.note > p:first-of-type {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+}
+
+.note > p > img {
+  height: 50px;
+  width: 50px;
 }
 
 .pin-btn {
@@ -27,7 +56,8 @@
 }
 
 .note-action-btns {
-  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .action-btn {
@@ -39,9 +69,16 @@
 }
 
 .note:hover .note-action-btns {
-  display: block;
+  transition: opacity 0.3s ease;
+  opacity: 1;
 }
 
 .action-btn:nth-child(2) {
   margin: auto 0.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .note-action-btns {
+    opacity: 1;
+  }
 }

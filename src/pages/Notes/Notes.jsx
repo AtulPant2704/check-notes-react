@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth, useNotes } from "../../context";
+import { getNotesHandler } from "../../utils";
 import { Note, NoteModal } from "../../components";
 import { Filter } from "./components/Filter";
 import "./Notes.css";
@@ -6,6 +8,18 @@ import "./Notes.css";
 const Notes = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [showNoteModal, setShowNoteModal] = useState(false);
+  const [editNote, setEditNote] = useState(null);
+  const {
+    authState: { token },
+  } = useAuth();
+  const {
+    notesState: { notes },
+    notesDispatch,
+  } = useNotes();
+
+  useEffect(() => {
+    getNotesHandler(token, notesDispatch);
+  }, []);
 
   return (
     <>
@@ -15,7 +29,13 @@ const Notes = () => {
           onClick={() => setShowNoteModal(false)}
         ></section>
       ) : null}
-      {showNoteModal ? <NoteModal setShowNoteModal={setShowNoteModal} /> : null}
+      {showNoteModal ? (
+        <NoteModal
+          setShowNoteModal={setShowNoteModal}
+          editNote={editNote}
+          setEditNote={setEditNote}
+        />
+      ) : null}
 
       <main className="main">
         <section className="search-filter-section">
@@ -50,11 +70,14 @@ const Notes = () => {
 
         <section className="notes-display-section">
           <div className="notes-container">
-            <Note />
-            <Note />
-            <Note />
-            <Note />
-            <Note />
+            {notes.map((note) => (
+              <Note
+                key={note._id}
+                note={note}
+                setShowNoteModal={setShowNoteModal}
+                setEditNote={setEditNote}
+              />
+            ))}
           </div>
         </section>
       </main>
