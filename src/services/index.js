@@ -10,3 +10,4 @@ export { restoreNoteFromArchiveService } from "./archiveServices/restoreNoteFrom
 export { deleteNoteFromArchiveService } from "./archiveServices/deleteNoteFromArchive.service";
 export { getTrashService } from "./trashServices/getTrash.service";
 export { restoreNoteFromTrashService } from "./trashServices/restoreNoteFromTrash.service";
+export { deleteNoteFromTrashService } from "./trashServices/deleteNoteFromTrash.service";

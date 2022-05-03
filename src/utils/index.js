@@ -8,3 +8,4 @@ export { restoreNoteFromArchiveHandler } from "./archiveHandlers/restoreNoteFrom
 export { deleteNoteFromArchiveHandler } from "./archiveHandlers/deleteNoteFromArchiveHandler";
 export { getTrashHandler } from "./trashHandlers/getTrashHandler";
 export { restoreNoteFromTrashHandler } from "./trashHandlers/restoreNoteFromTrashHandler";
+export { deleteNoteFromTrashHandler } from "./trashHandlers/deleteNoteFromTrashHandler";

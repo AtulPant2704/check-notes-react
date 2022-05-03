@@ -10,13 +10,13 @@ const deleteNoteFromArchiveHandler = async (
   try {
     const response = await deleteNoteFromArchiveService(token, note);
     if (response.status === 200) {
-      archiveDispatch({
-        type: "REMOVE_NOTE_FROM_TRASH",
-        payload: response.data.archive,
-      });
       trashDispatch({
         type: "ADD_NOTE_TO_TRASH",
         payload: response.data.trash,
+      });
+      archiveDispatch({
+        type: "REMOVE_NOTE_FROM_ARCHIVE",
+        payload: response.data.archives,
       });
       toast.success("Note added to Trash");
     } else {
