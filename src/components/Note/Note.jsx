@@ -7,6 +7,7 @@ import {
   deleteNoteHandler,
   deleteNoteFromArchiveHandler,
   restoreNoteFromTrashHandler,
+  deleteNoteFromTrashHandler,
 } from "../../utils";
 import "./Note.css";
 
@@ -35,6 +36,8 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
       deleteNoteHandler(token, note, notesDispatch, trashDispatch);
     } else if (pathname === "/archive") {
       deleteNoteFromArchiveHandler(token, note, archiveDispatch, trashDispatch);
+    } else {
+      deleteNoteFromTrashHandler(token, note, trashDispatch);
     }
   };
 
@@ -50,7 +53,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
 
   return (
     <div className="note" onClick={editNoteHandler}>
-      <button className="pin-btn">
+      <button className="pin-btn" title="Pin">
         <span className="material-icons-outlined">push_pin</span>
       </button>
       <h2>{note.title}</h2>
@@ -59,27 +62,50 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
         <p className="note-date">{note.date}</p>
         <div className="note-action-btns">
           <button
+            title="Delete"
             className="action-btn"
-            onClick={
-              pathname !== "/trash" ? addNoteToTrash : restoreNoteFromTrash
-            }
+            onClick={addNoteToTrash}
           >
             <span className="material-icons-outlined nav-icon">
               delete_outline
             </span>
           </button>
-          <button
-            className="action-btn"
-            onClick={
-              pathname !== "/archive"
-                ? addNoteToArchive
-                : restoreNoteFromArchive
-            }
-          >
-            <span className="material-icons-outlined nav-icon">archive</span>
-          </button>
-          {pathname !== "/archive" ? (
-            <button className="action-btn" onClick={editNoteHandler}>
+          {pathname === "/trash" ? (
+            <button
+              title="Restore"
+              className="action-btn"
+              onClick={restoreNoteFromTrash}
+            >
+              <span className="material-icons-outlined nav-icon">
+                <span className="material-icons-outlined">
+                  restore_from_trash
+                </span>
+              </span>
+            </button>
+          ) : null}
+          {pathname === "/trash" ? null : pathname !== "/archive" ? (
+            <button
+              title="Archive"
+              className="action-btn"
+              onClick={addNoteToArchive}
+            >
+              <span className="material-icons-outlined nav-icon">archive</span>
+            </button>
+          ) : (
+            <button
+              title="Un-Archive"
+              className="action-btn"
+              onClick={restoreNoteFromArchive}
+            >
+              <span className="material-icons-outlined">unarchive</span>
+            </button>
+          )}
+          {pathname !== "/archive" && pathname !== "/trash" ? (
+            <button
+              title="Edit"
+              className="action-btn"
+              onClick={editNoteHandler}
+            >
               <span className="material-icons-outlined nav-icon">edit</span>
             </button>
           ) : null}
