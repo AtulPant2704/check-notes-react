@@ -3,17 +3,17 @@ const trashReducer = (state, action) => {
     case "GET_TRASH":
       return {
         ...state,
-        delete: action.payload,
+        trash: action.payload,
       };
     case "ADD_NOTE_TO_TRASH":
       return {
         ...state,
-        delete: action.payload,
+        trash: action.payload,
       };
     case "REMOVE_NOTE_FROM_TRASH":
       return {
         ...state,
-        delete: action.payload,
+        trash: action.payload,
       };
     default:
       return state;
