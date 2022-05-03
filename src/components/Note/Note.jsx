@@ -1,9 +1,11 @@
 import { useLocation } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
-import { useAuth, useNotes, useArchive } from "../../context";
+import { useAuth, useNotes, useArchive, useTrash } from "../../context";
 import {
   addNoteToArchiveHandler,
   restoreNoteFromArchiveHandler,
+  deleteNoteHandler,
+  deleteNoteFromArchiveHandler,
 } from "../../utils";
 import "./Note.css";
 
@@ -14,6 +16,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
   } = useAuth();
   const { notesDispatch } = useNotes();
   const { archiveDispatch } = useArchive();
+  const { trashDispatch } = useTrash();
 
   const addNoteToArchive = (e) => {
     e.stopPropagation();
@@ -23,6 +26,15 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
   const restoreNoteFromArchive = (e) => {
     e.stopPropagation();
     restoreNoteFromArchiveHandler(token, note, archiveDispatch, notesDispatch);
+  };
+
+  const addNoteToTrash = (e) => {
+    e.stopPropagation();
+    if (pathname === "/notes") {
+      deleteNoteHandler(token, note, notesDispatch, trashDispatch);
+    } else if (pathname === "/archive") {
+      deleteNoteFromArchiveHandler(token, note, archiveDispatch, trashDispatch);
+    }
   };
 
   const editNoteHandler = () => {
@@ -40,7 +52,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
       <div className="note-footer">
         <p className="note-date">{note.date}</p>
         <div className="note-action-btns">
-          <button className="action-btn">
+          <button className="action-btn" onClick={addNoteToTrash}>
             <span className="material-icons-outlined nav-icon">
               delete_outline
             </span>
