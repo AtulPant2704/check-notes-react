@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
-import { useAuth, useNotes } from "../../context";
-import { getNotesHandler } from "../../utils";
+import { useAuth, useNotes, useFilter } from "../../context";
+import {
+  getNotesHandler,
+  getPinnedAndUnpinnedNotes,
+  sortNotesByDate,
+  sortNotesByPriority,
+} from "../../utils";
 import { Note, NoteModal } from "../../components";
 import { Filter } from "./components/Filter";
 import "./Notes.css";
@@ -16,10 +21,20 @@ const Notes = () => {
     notesState: { notes },
     notesDispatch,
   } = useNotes();
+  const {
+    filterState: { sortDateBy, sortPriorityBy },
+  } = useFilter();
 
   useEffect(() => {
     getNotesHandler(token, notesDispatch);
   }, []);
+
+  const { pinnedNotes, unPinnedNotes } = getPinnedAndUnpinnedNotes(notes);
+  const sortedDateNotes = sortNotesByDate(unPinnedNotes, sortDateBy);
+  const sortedPriorityNotes = sortNotesByPriority(
+    sortedDateNotes,
+    sortPriorityBy
+  );
 
   return (
     <>
@@ -70,7 +85,7 @@ const Notes = () => {
 
         <section className="notes-display-section">
           <div className="notes-container">
-            {notes.map((note) => (
+            {pinnedNotes.map((note) => (
               <Note
                 key={note._id}
                 note={note}
@@ -78,6 +93,19 @@ const Notes = () => {
                 setEditNote={setEditNote}
               />
             ))}
+            {sortedPriorityNotes.map((note) => (
+              <Note
+                key={note._id}
+                note={note}
+                setShowNoteModal={setShowNoteModal}
+                setEditNote={setEditNote}
+              />
+            ))}
+            {pinnedNotes.length === 0 && unPinnedNotes.length === 0 ? (
+              <section className="empty-label-notes">
+                <h3>You have not added any notes till now.</h3>
+              </section>
+            ) : null}
           </div>
         </section>
       </main>

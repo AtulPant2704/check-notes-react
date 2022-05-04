@@ -14,6 +14,7 @@ import {
   deleteNoteHandler,
   getAllNotesHandler,
   updateNoteHandler,
+  updateNotePinHandler,
 } from "./backend/controllers/NotesController";
 import {
   deleteFromTrashHandler,
@@ -47,8 +48,8 @@ export function makeServer({ environment = "development" } = {}) {
               content: "<p>World</p>",
               label: "work",
               color: "",
-              priority: "",
-              date: "5/2/2022 23:42",
+              priority: "Low",
+              date: "05/05/2022 04:13",
             },
           ],
           archives: [],
@@ -69,6 +70,7 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/notes/:noteId", updateNoteHandler.bind(this));
       this.delete("/notes/:noteId", deleteNoteHandler.bind(this));
       this.post("/notes/archives/:noteId", archiveNoteHandler.bind(this));
+      this.post("/notes/pin/:noteId", updateNotePinHandler.bind(this));
 
       // archive routes (private)
       this.get("/archives", getAllArchivedNotesHandler.bind(this));

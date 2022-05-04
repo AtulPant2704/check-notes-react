@@ -1,6 +1,8 @@
 export { addNoteHandler } from "./noteHandlers/addNoteHandler";
 export { getNotesHandler } from "./noteHandlers/getNotesHandler";
 export { editNoteHandler } from "./noteHandlers/editNoteHandler";
+export { pinNoteHandler } from "./noteHandlers/pinNoteHandler";
+export { getPinnedAndUnpinnedNotes } from "./noteHandlers/getPinnedAndUnpinnedNotes";
 export { deleteNoteHandler } from "./noteHandlers/deleteNoteHandler";
 export { getArchiveHandler } from "./archiveHandlers/getArchiveHandler";
 export { addNoteToArchiveHandler } from "./archiveHandlers/addNoteToArchiveHandler";
@@ -9,3 +11,5 @@ export { deleteNoteFromArchiveHandler } from "./archiveHandlers/deleteNoteFromAr
 export { getTrashHandler } from "./trashHandlers/getTrashHandler";
 export { restoreNoteFromTrashHandler } from "./trashHandlers/restoreNoteFromTrashHandler";
 export { deleteNoteFromTrashHandler } from "./trashHandlers/deleteNoteFromTrashHandler";
+export { sortNotesByDate } from "./noteHandlers/sortNotesByDate";
+export { sortNotesByPriority } from "./noteHandlers/sortNotesByPriority";

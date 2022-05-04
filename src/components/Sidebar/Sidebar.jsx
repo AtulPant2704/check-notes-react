@@ -18,13 +18,18 @@ const SideBar = () => {
   const path = location.pathname;
 
   const expandHandler = () => {
-    setSideExpand(false);
+    setSideExpand((prev) => !prev);
     setLabelCollapse(false);
   };
 
   const routeHandler = (path) => {
-    expandHandler();
     navigate(path);
+    setSideExpand(false);
+  };
+
+  const labelsCollapseHandler = () => {
+    setLabelCollapse((prev) => !prev);
+    setSideExpand(true);
   };
 
   const logoutHandler = () => {
@@ -49,7 +54,7 @@ const SideBar = () => {
             <div className="nav-brand">
               <span
                 className="material-icons-outlined toggle-menu"
-                onClick={() => setSideExpand((prev) => !prev)}
+                onClick={expandHandler}
               >
                 menu
               </span>
@@ -74,6 +79,7 @@ const SideBar = () => {
                 className={`nav-link collapse ${
                   labelCollapse || path.includes("/label") ? "active" : ""
                 }`}
+                onClick={labelsCollapseHandler}
               >
                 <span
                   title="Label"
@@ -86,7 +92,6 @@ const SideBar = () => {
                   className={`material-icons-outlined collapse-link ${
                     labelCollapse ? "rotate" : ""
                   }`}
-                  onClick={() => setLabelCollapse((prev) => !prev)}
                 >
                   expand_more
                 </span>
@@ -98,7 +103,9 @@ const SideBar = () => {
                   {labels.map((label) => (
                     <div
                       key={label}
-                      className="collapse-sublink"
+                      className={`collapse-sublink ${
+                        path.includes(label) ? "collapse-sublink-active" : ""
+                      }`}
                       onClick={() => routeHandler(`/labels/${label}`)}
                     >
                       <span className="material-icons-outlined">label</span>

@@ -8,6 +8,7 @@ import {
   deleteNoteFromArchiveHandler,
   restoreNoteFromTrashHandler,
   deleteNoteFromTrashHandler,
+  pinNoteHandler,
 } from "../../utils";
 import "./Note.css";
 
@@ -46,6 +47,17 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
     restoreNoteFromTrashHandler(token, note, trashDispatch, notesDispatch);
   };
 
+  const pinNote = (e) => {
+    e.stopPropagation();
+    pinNoteHandler(token, note, notesDispatch);
+  };
+
+  const getDateString = (date) => {
+    const currentDate = date.slice(0, 10).split("-").reverse().join("/");
+    const currentTime = date.slice(11, 16);
+    return currentDate + " " + currentTime;
+  };
+
   const editNoteHandler = () => {
     setEditNote(note);
     setShowNoteModal(true);
@@ -53,13 +65,20 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
 
   return (
     <div className="note" onClick={editNoteHandler}>
-      <button className="pin-btn" title="Pin">
-        <span className="material-icons-outlined">push_pin</span>
+      <button className="pin-btn" title="Pin" onClick={pinNote}>
+        <span
+          className={`${
+            note.isPinned ? "material-icons" : "material-icons-outlined"
+          }`}
+        >
+          push_pin
+        </span>
       </button>
       <h2>{note.title}</h2>
       {ReactHtmlParser(note.content)}
       <div className="note-footer">
-        <p className="note-date">{note.date}</p>
+        <p className="note-date">{getDateString(note.date)}</p>
+        <span className="note-priority">{note.priority.toUpperCase()}</span>
         <div className="note-action-btns">
           <button
             title="Delete"
@@ -102,15 +121,6 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
               </span>
             </button>
           )}
-          {pathname !== "/archive" && pathname !== "/trash" ? (
-            <button
-              title="Edit"
-              className="action-btn"
-              onClick={editNoteHandler}
-            >
-              <span className="material-icons-outlined nav-icon">edit</span>
-            </button>
-          ) : null}
         </div>
       </div>
     </div>

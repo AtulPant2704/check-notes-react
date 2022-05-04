@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { formatDate } from "../../backend/utils/authUtils";
 import { useAuth, useNotes, useLabels } from "../../context";
 import { addNoteHandler, editNoteHandler } from "../../utils";
 import { RichTextEditor } from "../RichTextEditor/RichTextEditor";
@@ -12,7 +13,8 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
       content: "",
       label: "",
       color: "",
-      priority: "",
+      priority: "Low",
+      isPinned: false,
     }
   );
   const { notesDispatch } = useNotes();
@@ -38,19 +40,8 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
     }
   };
 
-  const getDate = () => {
-    const date = new Date();
-    const currentDate = date.toLocaleDateString();
-    const currentTime = date.toLocaleTimeString("en-US", {
-      hour12: false,
-      hour: "numeric",
-      minute: "numeric",
-    });
-    return currentDate + " " + currentTime;
-  };
-
   const saveNoteHandler = () => {
-    const currentDate = getDate();
+    const currentDate = formatDate();
     const note = { ...newNote, date: currentDate };
     if (checkInputs()) {
       editNote
@@ -85,9 +76,11 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
               value={newNote.label}
               onChange={inputHandler}
             >
-              <option>Label</option>
+              <option>None</option>
               {labels.map((label) => (
-                <option value={label}>{label}</option>
+                <option key={label} value={label}>
+                  {label}
+                </option>
               ))}
             </select>
           </div>
@@ -102,7 +95,6 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
               value={newNote.priority}
               onChange={inputHandler}
             >
-              <option>Priority</option>
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
               <option value="High">High</option>
@@ -119,7 +111,7 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
               value={newNote.color}
               onChange={inputHandler}
             >
-              <option>Color</option>
+              <option>Default</option>
               <option value="Green">Green</option>
               <option value="Blue">Blue</option>
               <option value="Red">Red</option>

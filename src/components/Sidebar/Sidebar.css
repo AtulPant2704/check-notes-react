@@ -97,6 +97,10 @@
   gap: 10px;
 }
 
+.collapse-sublink-active {
+  color: white;
+}
+
 .collapse-sublink:hover {
   color: white;
 }
