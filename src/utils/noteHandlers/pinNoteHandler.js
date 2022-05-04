@@ -11,8 +11,7 @@ const pinNoteHandler = async (token, note, notesDispatch) => {
       throw new Error();
     }
   } catch (error) {
-    console.log(error);
-    // toast.error(error.response.data.errors[0]);
+    toast.error(error.response.data.errors[0]);
   }
 };
 
