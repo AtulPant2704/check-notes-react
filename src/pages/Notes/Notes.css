@@ -116,7 +116,7 @@
 }
 
 /* Responsiveness Styling */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .main {
     width: calc(100% - 80px);
     margin-left: 75px;
@@ -124,6 +124,9 @@
   .search-filter-section {
     margin-left: 2rem;
     width: 80%;
+  }
+  .search {
+    border: 1px solid var(--primary-color);
   }
   .notes-container {
     width: 100%;
