@@ -8,6 +8,7 @@ import {
   deleteNoteFromArchiveHandler,
   restoreNoteFromTrashHandler,
   deleteNoteFromTrashHandler,
+  pinNoteHandler,
 } from "../../utils";
 import "./Note.css";
 
@@ -46,6 +47,11 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
     restoreNoteFromTrashHandler(token, note, trashDispatch, notesDispatch);
   };
 
+  const pinNote = (e) => {
+    e.stopPropagation();
+    pinNoteHandler(token, note, notesDispatch);
+  };
+
   const editNoteHandler = () => {
     setEditNote(note);
     setShowNoteModal(true);
@@ -53,8 +59,14 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
 
   return (
     <div className="note" onClick={editNoteHandler}>
-      <button className="pin-btn" title="Pin">
-        <span className="material-icons-outlined">push_pin</span>
+      <button className="pin-btn" title="Pin" onClick={pinNote}>
+        <span
+          className={`${
+            note.isPinned ? "material-icons" : "material-icons-outlined"
+          }`}
+        >
+          push_pin
+        </span>
       </button>
       <h2>{note.title}</h2>
       {ReactHtmlParser(note.content)}

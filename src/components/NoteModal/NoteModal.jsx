@@ -13,6 +13,7 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
       label: "",
       color: "",
       priority: "",
+      isPinned: false,
     }
   );
   const { notesDispatch } = useNotes();
