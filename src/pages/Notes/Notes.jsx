@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
-import { useAuth, useNotes } from "../../context";
-import { getNotesHandler, getPinnedAndUnpinnedNotes } from "../../utils";
+import { useAuth, useNotes, useFilter } from "../../context";
+import {
+  getNotesHandler,
+  getPinnedAndUnpinnedNotes,
+  sortNotesByDate,
+  sortNotesByPriority,
+} from "../../utils";
 import { Note, NoteModal } from "../../components";
 import { Filter } from "./components/Filter";
 import "./Notes.css";
@@ -16,11 +21,20 @@ const Notes = () => {
     notesState: { notes },
     notesDispatch,
   } = useNotes();
-  const { pinnedNotes, unPinnedNotes } = getPinnedAndUnpinnedNotes(notes);
+  const {
+    filterState: { sortDateBy, sortPriorityBy },
+  } = useFilter();
 
   useEffect(() => {
     getNotesHandler(token, notesDispatch);
   }, []);
+
+  const { pinnedNotes, unPinnedNotes } = getPinnedAndUnpinnedNotes(notes);
+  const sortedDateNotes = sortNotesByDate(unPinnedNotes, sortDateBy);
+  const sortedPriorityNotes = sortNotesByPriority(
+    sortedDateNotes,
+    sortPriorityBy
+  );
 
   return (
     <>
@@ -79,7 +93,7 @@ const Notes = () => {
                 setEditNote={setEditNote}
               />
             ))}
-            {unPinnedNotes.map((note) => (
+            {sortedPriorityNotes.map((note) => (
               <Note
                 key={note._id}
                 note={note}
