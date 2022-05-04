@@ -5,9 +5,11 @@ const addNoteToArchiveHandler = async (
   token,
   note,
   archiveDispatch,
-  notesDispatch
+  notesDispatch,
+  setArchiveBtnDisable
 ) => {
   try {
+    setArchiveBtnDisable(true);
     const response = await addNoteToArchiveService(token, note);
     if (response.status === 201) {
       archiveDispatch({
@@ -24,6 +26,8 @@ const addNoteToArchiveHandler = async (
     }
   } catch (error) {
     toast.error(error.response.data.errors[0]);
+  } finally {
+    setArchiveBtnDisable(false);
   }
 };
 

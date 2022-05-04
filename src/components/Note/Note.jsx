@@ -16,6 +16,10 @@ import "./Note.css";
 const Note = ({ note, setShowNoteModal, setEditNote }) => {
   const { pathname } = useLocation();
   const [pinBtnDisable, setPinBtnDisable] = useState(false);
+  const [archiveBtnDisable, setArchiveBtnDisable] = useState(false);
+  const [unarchiveBtnDisable, setUnarchiveBtnDisable] = useState(false);
+  const [deleteBtnDisable, setDeleteBtnDisable] = useState(false);
+  const [restoreBtnDisable, setRestoreBtnDisable] = useState(false);
   const {
     authState: { token },
   } = useAuth();
@@ -25,28 +29,63 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
 
   const addNoteToArchive = (e) => {
     e.stopPropagation();
-    addNoteToArchiveHandler(token, note, archiveDispatch, notesDispatch);
+    addNoteToArchiveHandler(
+      token,
+      note,
+      archiveDispatch,
+      notesDispatch,
+      setArchiveBtnDisable
+    );
   };
 
   const restoreNoteFromArchive = (e) => {
     e.stopPropagation();
-    restoreNoteFromArchiveHandler(token, note, archiveDispatch, notesDispatch);
+    restoreNoteFromArchiveHandler(
+      token,
+      note,
+      archiveDispatch,
+      notesDispatch,
+      setUnarchiveBtnDisable
+    );
   };
 
   const addNoteToTrash = (e) => {
     e.stopPropagation();
     if (pathname === "/notes") {
-      deleteNoteHandler(token, note, notesDispatch, trashDispatch);
+      deleteNoteHandler(
+        token,
+        note,
+        notesDispatch,
+        trashDispatch,
+        setDeleteBtnDisable
+      );
     } else if (pathname === "/archive") {
-      deleteNoteFromArchiveHandler(token, note, archiveDispatch, trashDispatch);
+      deleteNoteFromArchiveHandler(
+        token,
+        note,
+        archiveDispatch,
+        trashDispatch,
+        setDeleteBtnDisable
+      );
     } else {
-      deleteNoteFromTrashHandler(token, note, trashDispatch);
+      deleteNoteFromTrashHandler(
+        token,
+        note,
+        trashDispatch,
+        setDeleteBtnDisable
+      );
     }
   };
 
   const restoreNoteFromTrash = (e) => {
     e.stopPropagation();
-    restoreNoteFromTrashHandler(token, note, trashDispatch, notesDispatch);
+    restoreNoteFromTrashHandler(
+      token,
+      note,
+      trashDispatch,
+      notesDispatch,
+      setRestoreBtnDisable
+    );
   };
 
   const pinNote = (e) => {
@@ -91,9 +130,13 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
           <button
             title="Delete"
             className="action-btn"
+            disabled={deleteBtnDisable}
             onClick={addNoteToTrash}
           >
-            <span className="material-icons-outlined nav-icon">
+            <span
+              onClick={deleteBtnDisable ? (e) => e.stopPropagation() : null}
+              className="material-icons-outlined nav-icon"
+            >
               delete_outline
             </span>
           </button>
@@ -101,12 +144,14 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
             <button
               title="Restore"
               className="action-btn"
+              disabled={restoreBtnDisable}
               onClick={restoreNoteFromTrash}
             >
-              <span className="material-icons-outlined nav-icon">
-                <span className="material-icons-outlined nav-icon">
-                  restore_from_trash
-                </span>
+              <span
+                onClick={restoreBtnDisable ? (e) => e.stopPropagation() : null}
+                className="material-icons-outlined nav-icon"
+              >
+                restore_from_trash
               </span>
             </button>
           ) : null}
@@ -114,17 +159,29 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
             <button
               title="Archive"
               className="action-btn"
+              disabled={archiveBtnDisable}
               onClick={addNoteToArchive}
             >
-              <span className="material-icons-outlined nav-icon">archive</span>
+              <span
+                onClick={archiveBtnDisable ? (e) => e.stopPropagation() : null}
+                className="material-icons-outlined nav-icon"
+              >
+                archive
+              </span>
             </button>
           ) : (
             <button
               title="Un-Archive"
               className="action-btn"
+              disabled={unarchiveBtnDisable}
               onClick={restoreNoteFromArchive}
             >
-              <span className="material-icons-outlined nav-icon">
+              <span
+                onClick={
+                  unarchiveBtnDisable ? (e) => e.stopPropagation() : null
+                }
+                className="material-icons-outlined nav-icon"
+              >
                 unarchive
               </span>
             </button>

@@ -5,9 +5,11 @@ const restoreNoteFromTrashHandler = async (
   token,
   note,
   trashDispatch,
-  notesDispatch
+  notesDispatch,
+  setRestoreBtnDisable
 ) => {
   try {
+    setRestoreBtnDisable(true);
     const response = await restoreNoteFromTrashService(token, note);
     if (response.status === 200) {
       trashDispatch({
@@ -24,6 +26,8 @@ const restoreNoteFromTrashHandler = async (
     }
   } catch (error) {
     toast.error(error.response.data.errors[0]);
+  } finally {
+    setRestoreBtnDisable(false);
   }
 };
 
