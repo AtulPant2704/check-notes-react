@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { formatDate } from "../../backend/utils/authUtils";
 import { useAuth, useNotes, useLabels } from "../../context";
 import { addNoteHandler, editNoteHandler } from "../../utils";
 import { RichTextEditor } from "../RichTextEditor/RichTextEditor";
@@ -39,19 +40,8 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
     }
   };
 
-  const getDate = () => {
-    const date = new Date();
-    const currentDate = date.toLocaleDateString();
-    const currentTime = date.toLocaleTimeString("en-US", {
-      hour12: false,
-      hour: "numeric",
-      minute: "numeric",
-    });
-    return currentDate + " " + currentTime;
-  };
-
   const saveNoteHandler = () => {
-    const currentDate = getDate();
+    const currentDate = formatDate();
     const note = { ...newNote, date: currentDate };
     if (checkInputs()) {
       editNote

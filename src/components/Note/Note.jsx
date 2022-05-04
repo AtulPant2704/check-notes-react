@@ -52,6 +52,12 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
     pinNoteHandler(token, note, notesDispatch);
   };
 
+  const getDateString = (date) => {
+    const currentDate = date.slice(0, 10).split("-").reverse().join("/");
+    const currentTime = date.slice(11, 16);
+    return currentDate + " " + currentTime;
+  };
+
   const editNoteHandler = () => {
     setEditNote(note);
     setShowNoteModal(true);
@@ -71,7 +77,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
       <h2>{note.title}</h2>
       {ReactHtmlParser(note.content)}
       <div className="note-footer">
-        <p className="note-date">{note.date}</p>
+        <p className="note-date">{getDateString(note.date)}</p>
         <span className="note-priority">{note.priority.toUpperCase()}</span>
         <div className="note-action-btns">
           <button
