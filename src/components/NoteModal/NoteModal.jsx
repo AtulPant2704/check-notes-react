@@ -12,7 +12,7 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
       content: "",
       label: "",
       color: "",
-      priority: "",
+      priority: "Low",
       isPinned: false,
     }
   );
@@ -86,9 +86,11 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
               value={newNote.label}
               onChange={inputHandler}
             >
-              <option>Label</option>
+              <option>None</option>
               {labels.map((label) => (
-                <option value={label}>{label}</option>
+                <option key={label} value={label}>
+                  {label}
+                </option>
               ))}
             </select>
           </div>
@@ -103,7 +105,6 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
               value={newNote.priority}
               onChange={inputHandler}
             >
-              <option>Priority</option>
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
               <option value="High">High</option>
@@ -120,7 +121,7 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
               value={newNote.color}
               onChange={inputHandler}
             >
-              <option>Color</option>
+              <option>Default</option>
               <option value="Green">Green</option>
               <option value="Blue">Blue</option>
               <option value="Red">Red</option>

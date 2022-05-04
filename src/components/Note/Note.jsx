@@ -72,6 +72,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
       {ReactHtmlParser(note.content)}
       <div className="note-footer">
         <p className="note-date">{note.date}</p>
+        <span className="note-priority">{note.priority.toUpperCase()}</span>
         <div className="note-action-btns">
           <button
             title="Delete"
@@ -114,7 +115,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
               </span>
             </button>
           )}
-          {pathname !== "/archive" && pathname !== "/trash" ? (
+          {/* {pathname !== "/archive" && pathname !== "/trash" ? (
             <button
               title="Edit"
               className="action-btn"
@@ -122,7 +123,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
             >
               <span className="material-icons-outlined nav-icon">edit</span>
             </button>
-          ) : null}
+          ) : null} */}
         </div>
       </div>
     </div>
