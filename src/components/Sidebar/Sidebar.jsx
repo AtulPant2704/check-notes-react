@@ -18,13 +18,13 @@ const SideBar = () => {
   const path = location.pathname;
 
   const expandHandler = () => {
-    setSideExpand(false);
+    setSideExpand((prev) => !prev);
     setLabelCollapse(false);
   };
 
   const routeHandler = (path) => {
-    expandHandler();
     navigate(path);
+    setSideExpand(false);
   };
 
   const labelsCollapseHandler = () => {
@@ -54,7 +54,7 @@ const SideBar = () => {
             <div className="nav-brand">
               <span
                 className="material-icons-outlined toggle-menu"
-                onClick={() => setSideExpand((prev) => !prev)}
+                onClick={expandHandler}
               >
                 menu
               </span>
