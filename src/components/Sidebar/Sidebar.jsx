@@ -71,7 +71,7 @@ const SideBar = () => {
               </Link>
               <div
                 className={`nav-link collapse ${
-                  labelCollapse || path === "/label" ? "active" : ""
+                  labelCollapse || path.includes("/label") ? "active" : ""
                 }`}
               >
                 <span
@@ -94,8 +94,12 @@ const SideBar = () => {
                     labelCollapse ? "show-collapse" : "collapse-menu"
                   }`}
                 >
-                  {labels.map((label, index) => (
-                    <div key={index} className="collapse-sublink">
+                  {labels.map((label) => (
+                    <div
+                      key={label}
+                      className="collapse-sublink"
+                      onClick={() => navigate(`/labels/${label}`)}
+                    >
                       <span className="material-icons-outlined">label</span>
                       {label}
                     </div>

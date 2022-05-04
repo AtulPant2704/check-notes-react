@@ -25,7 +25,7 @@ function App() {
       />
 
       {location.pathname === "/notes" ||
-      location.pathname === "/label" ||
+      location.pathname.includes("/labels") ||
       location.pathname === "/archive" ||
       location.pathname === "/trash" ? (
         <SideBar />
@@ -42,7 +42,7 @@ function App() {
           }
         />
         <Route
-          path="/label"
+          path="/labels/:labelName"
           element={
             <RequiresAuth>
               <Label />
