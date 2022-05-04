@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useAuth, useNotes } from "../../context";
+import { useAuth, useNotes, useLabels } from "../../context";
 import { addNoteHandler, editNoteHandler } from "../../utils";
 import { RichTextEditor } from "../RichTextEditor/RichTextEditor";
 import "./NoteModal.css";
@@ -19,6 +19,9 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
   const {
     authState: { token },
   } = useAuth();
+  const {
+    labelsState: { labels },
+  } = useLabels();
 
   const inputHandler = (event) => {
     const { name, value } = event.target;
@@ -83,9 +86,9 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
               onChange={inputHandler}
             >
               <option>Label</option>
-              <option value="Label 1">Label 1</option>
-              <option value="Label 2">Label 2</option>
-              <option value="Label 3">Label 3</option>
+              {labels.map((label) => (
+                <option value={label}>{label}</option>
+              ))}
             </select>
           </div>
           <div className="select-box">
