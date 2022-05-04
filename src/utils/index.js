@@ -11,3 +11,5 @@ export { deleteNoteFromArchiveHandler } from "./archiveHandlers/deleteNoteFromAr
 export { getTrashHandler } from "./trashHandlers/getTrashHandler";
 export { restoreNoteFromTrashHandler } from "./trashHandlers/restoreNoteFromTrashHandler";
 export { deleteNoteFromTrashHandler } from "./trashHandlers/deleteNoteFromTrashHandler";
+export { sortNotesByDate } from "./noteHandlers/sortNotesByDate";
+export { sortNotesByPriority } from "./noteHandlers/sortNotesByPriority";
