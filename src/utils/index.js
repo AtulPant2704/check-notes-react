@@ -2,6 +2,7 @@ export { addNoteHandler } from "./noteHandlers/addNoteHandler";
 export { getNotesHandler } from "./noteHandlers/getNotesHandler";
 export { editNoteHandler } from "./noteHandlers/editNoteHandler";
 export { pinNoteHandler } from "./noteHandlers/pinNoteHandler";
+export { getPinnedAndUnpinnedNotes } from "./noteHandlers/getPinnedAndUnpinnedNotes";
 export { deleteNoteHandler } from "./noteHandlers/deleteNoteHandler";
 export { getArchiveHandler } from "./archiveHandlers/getArchiveHandler";
 export { addNoteToArchiveHandler } from "./archiveHandlers/addNoteToArchiveHandler";

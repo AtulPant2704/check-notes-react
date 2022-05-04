@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth, useNotes } from "../../context";
-import { getNotesHandler } from "../../utils";
+import { getNotesHandler, getPinnedAndUnpinnedNotes } from "../../utils";
 import { Note, NoteModal } from "../../components";
 import { Filter } from "./components/Filter";
 import "./Notes.css";
@@ -16,6 +16,7 @@ const Notes = () => {
     notesState: { notes },
     notesDispatch,
   } = useNotes();
+  const { pinnedNotes, unPinnedNotes } = getPinnedAndUnpinnedNotes(notes);
 
   useEffect(() => {
     getNotesHandler(token, notesDispatch);
@@ -70,7 +71,7 @@ const Notes = () => {
 
         <section className="notes-display-section">
           <div className="notes-container">
-            {notes.map((note) => (
+            {pinnedNotes.map((note) => (
               <Note
                 key={note._id}
                 note={note}
@@ -78,6 +79,19 @@ const Notes = () => {
                 setEditNote={setEditNote}
               />
             ))}
+            {unPinnedNotes.map((note) => (
+              <Note
+                key={note._id}
+                note={note}
+                setShowNoteModal={setShowNoteModal}
+                setEditNote={setEditNote}
+              />
+            ))}
+            {pinnedNotes.length === 0 && unPinnedNotes.length === 0 ? (
+              <section className="empty-label-notes">
+                <h3>You have not added any notes till now.</h3>
+              </section>
+            ) : null}
           </div>
         </section>
       </main>
