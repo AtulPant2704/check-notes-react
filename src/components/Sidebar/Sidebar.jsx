@@ -18,12 +18,13 @@ const SideBar = () => {
   const path = location.pathname;
 
   const expandHandler = () => {
-    if (sideExpand === true) {
-      setSideExpand(false);
-      setLabelCollapse(false);
-    } else {
-      setSideExpand(true);
-    }
+    setSideExpand(false);
+    setLabelCollapse(false);
+  };
+
+  const routeHandler = (path) => {
+    expandHandler();
+    navigate(path);
   };
 
   const logoutHandler = () => {
@@ -48,7 +49,7 @@ const SideBar = () => {
             <div className="nav-brand">
               <span
                 className="material-icons-outlined toggle-menu"
-                onClick={expandHandler}
+                onClick={() => setSideExpand(true)}
               >
                 menu
               </span>
@@ -57,8 +58,8 @@ const SideBar = () => {
               </Link>
             </div>
             <div className="nav-list">
-              <Link
-                to="/notes"
+              <div
+                onClick={() => routeHandler("/notes")}
                 className={`nav-link ${path === "/notes" ? "active" : ""}`}
               >
                 <span
@@ -68,7 +69,7 @@ const SideBar = () => {
                   lightbulb
                 </span>
                 <span className="nav-name">Notes</span>
-              </Link>
+              </div>
               <div
                 className={`nav-link collapse ${
                   labelCollapse || path.includes("/label") ? "active" : ""
@@ -98,7 +99,7 @@ const SideBar = () => {
                     <div
                       key={label}
                       className="collapse-sublink"
-                      onClick={() => navigate(`/labels/${label}`)}
+                      onClick={() => routeHandler(`/labels/${label}`)}
                     >
                       <span className="material-icons-outlined">label</span>
                       {label}
@@ -113,8 +114,8 @@ const SideBar = () => {
                   </button>
                 </ul>
               </div>
-              <Link
-                to="/archive"
+              <div
+                onClick={() => routeHandler("/archive")}
                 className={`nav-link ${path === "/archive" ? "active" : ""}`}
               >
                 <span
@@ -124,9 +125,9 @@ const SideBar = () => {
                   archive
                 </span>
                 <span className="nav-name">Archive</span>
-              </Link>
-              <Link
-                to="/trash"
+              </div>
+              <div
+                onClick={() => routeHandler("/trash")}
                 className={`nav-link ${path === "/trash" ? "active" : ""}`}
               >
                 <span
@@ -136,7 +137,7 @@ const SideBar = () => {
                   delete_outline
                 </span>
                 <span className="nav-name">Trash</span>
-              </Link>
+              </div>
             </div>
           </div>
           <div className="nav-link" onClick={logoutHandler}>
