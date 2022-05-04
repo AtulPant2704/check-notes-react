@@ -49,7 +49,7 @@ const SideBar = () => {
             <div className="nav-brand">
               <span
                 className="material-icons-outlined toggle-menu"
-                onClick={() => setSideExpand(true)}
+                onClick={() => setSideExpand((prev) => !prev)}
               >
                 menu
               </span>
