@@ -121,15 +121,6 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
               </span>
             </button>
           )}
-          {/* {pathname !== "/archive" && pathname !== "/trash" ? (
-            <button
-              title="Edit"
-              className="action-btn"
-              onClick={editNoteHandler}
-            >
-              <span className="material-icons-outlined nav-icon">edit</span>
-            </button>
-          ) : null} */}
         </div>
       </div>
     </div>
