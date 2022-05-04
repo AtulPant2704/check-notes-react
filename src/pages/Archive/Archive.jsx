@@ -19,11 +19,17 @@ const Archive = () => {
     <>
       <main className="archive-page">
         <h2 className="page-title">Archived Notes</h2>
-        <section className="archived-notes-container">
-          {archive.map((note) => (
-            <Note key={note._id} note={note} />
-          ))}
-        </section>
+        {archive.length > 0 ? (
+          <section className="archived-notes-container">
+            {archive.map((note) => (
+              <Note key={note._id} note={note} />
+            ))}
+          </section>
+        ) : (
+          <section className="empty-label-notes">
+            <h3>No notes in Archive.</h3>
+          </section>
+        )}
       </main>
     </>
   );

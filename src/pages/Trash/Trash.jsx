@@ -21,11 +21,17 @@ const Trash = () => {
     <>
       <main className="delete-page">
         <h2 className="page-title">Deleted Notes</h2>
-        <section className="deleted-notes-container">
-          {trash.map((note) => (
-            <Note key={note._id} note={note} />
-          ))}
-        </section>
+        {trash.length > 0 ? (
+          <section className="deleted-notes-container">
+            {trash.map((note) => (
+              <Note key={note._id} note={note} />
+            ))}
+          </section>
+        ) : (
+          <section className="empty-label-notes">
+            <h3>No notes in Trash.</h3>
+          </section>
+        )}
       </main>
     </>
   );
