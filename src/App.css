@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 :root {
-  --hue-color: 240; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
+  --hue-color: 42; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
   --primary-color: hsl(var(--hue-color), 69%, 61%);
   --primary-color-second: hsl(var(--hue-color), 30%, 8%);
   --primary-hover-color: hsl(var(--hue-color), 57%, 53%);
