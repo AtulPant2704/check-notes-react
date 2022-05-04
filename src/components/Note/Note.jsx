@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
 import { useAuth, useNotes, useArchive, useTrash } from "../../context";
@@ -14,6 +15,7 @@ import "./Note.css";
 
 const Note = ({ note, setShowNoteModal, setEditNote }) => {
   const { pathname } = useLocation();
+  const [pinBtnDisable, setPinBtnDisable] = useState(false);
   const {
     authState: { token },
   } = useAuth();
@@ -49,7 +51,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
 
   const pinNote = (e) => {
     e.stopPropagation();
-    pinNoteHandler(token, note, notesDispatch);
+    pinNoteHandler(token, note, notesDispatch, setPinBtnDisable);
   };
 
   const getDateString = (date) => {
@@ -65,11 +67,17 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
 
   return (
     <div className="note" onClick={editNoteHandler}>
-      <button className="pin-btn" title="Pin" onClick={pinNote}>
+      <button
+        className="pin-btn"
+        title="Pin"
+        disabled={pinBtnDisable}
+        onClick={pinNote}
+      >
         <span
           className={`${
             note.isPinned ? "material-icons" : "material-icons-outlined"
           }`}
+          onClick={pinBtnDisable ? (e) => e.stopPropagation() : null}
         >
           push_pin
         </span>
