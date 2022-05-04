@@ -3,6 +3,7 @@ export { signUpService } from "./authServices/signUp.service";
 export { getNotesService } from "./noteServices/getNotes.service";
 export { addNoteService } from "./noteServices/addNote.service";
 export { editNoteService } from "./noteServices/editNote.service";
+export { pinNoteService } from "./noteServices/pinNote.service";
 export { deleteNoteService } from "./noteServices/deleteNote.service";
 export { getArchiveService } from "./archiveServices/getArchive.service";
 export { addNoteToArchiveService } from "./archiveServices/addNoteToArchive.service";
