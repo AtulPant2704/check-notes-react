@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../../context";
+import { useAuth, useLabels } from "../../context";
 import { AddLabelModal } from "../AddLabelModal/AddLabelModal";
 import "./Sidebar.css";
 
@@ -12,6 +12,9 @@ const SideBar = () => {
   const [labelCollapse, setLabelCollapse] = useState(false);
   const [showLabelModal, setShowLabelModal] = useState(false);
   const { authDispatch } = useAuth();
+  const {
+    labelsState: { labels },
+  } = useLabels();
   const path = location.pathname;
 
   const expandHandler = () => {
@@ -91,18 +94,12 @@ const SideBar = () => {
                     labelCollapse ? "show-collapse" : "collapse-menu"
                   }`}
                 >
-                  <Link to="/label" className="collapse-sublink">
-                    <span className="material-icons-outlined">label</span> Label
-                    1
-                  </Link>
-                  <Link to="/label" className="collapse-sublink">
-                    <span className="material-icons-outlined">label</span> Label
-                    2
-                  </Link>
-                  <Link to="/label" className="collapse-sublink">
-                    <span className="material-icons-outlined">label</span> Label
-                    3
-                  </Link>
+                  {labels.map((label, index) => (
+                    <div key={index} className="collapse-sublink">
+                      <span className="material-icons-outlined">label</span>
+                      {label}
+                    </div>
+                  ))}
                   <button
                     className="add-label-btn"
                     onClick={() => setShowLabelModal(true)}

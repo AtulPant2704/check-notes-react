@@ -1,6 +1,16 @@
+import { useState } from "react";
+import { useLabels } from "../../context";
 import "./AddLabelModal.css";
 
 const AddLabelModal = ({ showLabelModal, setShowLabelModal }) => {
+  const { labelsDispatch } = useLabels();
+  const [newLabel, setNewLabel] = useState("");
+
+  const addNewLabel = () => {
+    labelsDispatch({ type: "ADD_NEW_LABEL", payload: newLabel });
+    setShowLabelModal(false);
+  };
+
   return (
     <>
       {showLabelModal ? (
@@ -16,10 +26,12 @@ const AddLabelModal = ({ showLabelModal, setShowLabelModal }) => {
           placeholder="Enter Label Name"
           className="input-label"
           autoFocus
+          value={newLabel}
+          onChange={(e) => setNewLabel(e.target.value)}
         />
         <button
           className="btn btn-solid-primary btn-save-label"
-          onClick={() => setShowLabelModal(false)}
+          onClick={addNewLabel}
         >
           Submit
         </button>
