@@ -5,7 +5,7 @@ const LabelsContext = createContext(null);
 
 const LabelsProvider = ({ children }) => {
   const [labelsState, labelsDispatch] = useReducer(labelsReducer, {
-    labels: [],
+    labels: ["work"],
   });
 
   return (

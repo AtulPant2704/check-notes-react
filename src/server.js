@@ -45,7 +45,7 @@ export function makeServer({ environment = "development" } = {}) {
               _id: uuid(),
               title: "Hello",
               content: "<p>World</p>",
-              label: "",
+              label: "work",
               color: "",
               priority: "",
               date: "5/2/2022 23:42",
