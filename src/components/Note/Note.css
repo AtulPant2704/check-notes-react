@@ -16,6 +16,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   word-break: break-all;
+  max-width: 150px;
 }
 
 .note > p {
@@ -52,12 +53,17 @@
   margin-top: auto;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .note-action-btns {
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  display: flex;
+}
+
+.note-priority {
+  color: white;
+  margin-right: 0.5rem;
+  margin-left: 3.9rem;
 }
 
 .action-btn {
@@ -66,14 +72,14 @@
   color: var(--primary-color);
   font-size: 1.25rem;
   cursor: pointer;
+  display: inline-flex;
 }
 
-.note:hover .note-action-btns {
-  transition: opacity 0.3s ease;
-  opacity: 1;
+.action-btn span {
+  font-size: 23px;
 }
 
-.action-btn:nth-child(2) {
+.action-btn:nth-child(1) {
   margin: auto 0.5rem;
 }
 
