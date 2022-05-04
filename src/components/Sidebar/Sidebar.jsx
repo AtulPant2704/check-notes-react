@@ -27,6 +27,11 @@ const SideBar = () => {
     navigate(path);
   };
 
+  const labelsCollapseHandler = () => {
+    setLabelCollapse((prev) => !prev);
+    setSideExpand(true);
+  };
+
   const logoutHandler = () => {
     navigate("/");
     localStorage.removeItem("token");
@@ -74,6 +79,7 @@ const SideBar = () => {
                 className={`nav-link collapse ${
                   labelCollapse || path.includes("/label") ? "active" : ""
                 }`}
+                onClick={labelsCollapseHandler}
               >
                 <span
                   title="Label"
@@ -86,7 +92,6 @@ const SideBar = () => {
                   className={`material-icons-outlined collapse-link ${
                     labelCollapse ? "rotate" : ""
                   }`}
-                  onClick={() => setLabelCollapse((prev) => !prev)}
                 >
                   expand_more
                 </span>
@@ -98,7 +103,9 @@ const SideBar = () => {
                   {labels.map((label) => (
                     <div
                       key={label}
-                      className="collapse-sublink"
+                      className={`collapse-sublink ${
+                        path.includes(label) ? "collapse-sublink-active" : ""
+                      }`}
                       onClick={() => routeHandler(`/labels/${label}`)}
                     >
                       <span className="material-icons-outlined">label</span>
