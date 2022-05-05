@@ -47,7 +47,7 @@ export function makeServer({ environment = "development" } = {}) {
               title: "Hello",
               content: "<p>World</p>",
               label: "work",
-              color: "",
+              color: "Default",
               priority: "Low",
               date: "05/05/2022 04:13",
             },

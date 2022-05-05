@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
 import { useAuth, useNotes, useArchive, useTrash } from "../../context";
@@ -14,6 +15,11 @@ import "./Note.css";
 
 const Note = ({ note, setShowNoteModal, setEditNote }) => {
   const { pathname } = useLocation();
+  const [pinBtnDisable, setPinBtnDisable] = useState(false);
+  const [archiveBtnDisable, setArchiveBtnDisable] = useState(false);
+  const [unarchiveBtnDisable, setUnarchiveBtnDisable] = useState(false);
+  const [deleteBtnDisable, setDeleteBtnDisable] = useState(false);
+  const [restoreBtnDisable, setRestoreBtnDisable] = useState(false);
   const {
     authState: { token },
   } = useAuth();
@@ -23,33 +29,68 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
 
   const addNoteToArchive = (e) => {
     e.stopPropagation();
-    addNoteToArchiveHandler(token, note, archiveDispatch, notesDispatch);
+    addNoteToArchiveHandler(
+      token,
+      note,
+      archiveDispatch,
+      notesDispatch,
+      setArchiveBtnDisable
+    );
   };
 
   const restoreNoteFromArchive = (e) => {
     e.stopPropagation();
-    restoreNoteFromArchiveHandler(token, note, archiveDispatch, notesDispatch);
+    restoreNoteFromArchiveHandler(
+      token,
+      note,
+      archiveDispatch,
+      notesDispatch,
+      setUnarchiveBtnDisable
+    );
   };
 
   const addNoteToTrash = (e) => {
     e.stopPropagation();
     if (pathname === "/notes") {
-      deleteNoteHandler(token, note, notesDispatch, trashDispatch);
+      deleteNoteHandler(
+        token,
+        note,
+        notesDispatch,
+        trashDispatch,
+        setDeleteBtnDisable
+      );
     } else if (pathname === "/archive") {
-      deleteNoteFromArchiveHandler(token, note, archiveDispatch, trashDispatch);
+      deleteNoteFromArchiveHandler(
+        token,
+        note,
+        archiveDispatch,
+        trashDispatch,
+        setDeleteBtnDisable
+      );
     } else {
-      deleteNoteFromTrashHandler(token, note, trashDispatch);
+      deleteNoteFromTrashHandler(
+        token,
+        note,
+        trashDispatch,
+        setDeleteBtnDisable
+      );
     }
   };
 
   const restoreNoteFromTrash = (e) => {
     e.stopPropagation();
-    restoreNoteFromTrashHandler(token, note, trashDispatch, notesDispatch);
+    restoreNoteFromTrashHandler(
+      token,
+      note,
+      trashDispatch,
+      notesDispatch,
+      setRestoreBtnDisable
+    );
   };
 
   const pinNote = (e) => {
     e.stopPropagation();
-    pinNoteHandler(token, note, notesDispatch);
+    pinNoteHandler(token, note, notesDispatch, setPinBtnDisable);
   };
 
   const getDateString = (date) => {
@@ -64,12 +105,18 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
   };
 
   return (
-    <div className="note" onClick={editNoteHandler}>
-      <button className="pin-btn" title="Pin" onClick={pinNote}>
+    <div className={`note ${note.color}`} onClick={editNoteHandler}>
+      <button
+        className="pin-btn"
+        title="Pin"
+        disabled={pinBtnDisable}
+        onClick={pinNote}
+      >
         <span
           className={`${
             note.isPinned ? "material-icons" : "material-icons-outlined"
           }`}
+          onClick={pinBtnDisable ? (e) => e.stopPropagation() : null}
         >
           push_pin
         </span>
@@ -83,9 +130,13 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
           <button
             title="Delete"
             className="action-btn"
+            disabled={deleteBtnDisable}
             onClick={addNoteToTrash}
           >
-            <span className="material-icons-outlined nav-icon">
+            <span
+              onClick={deleteBtnDisable ? (e) => e.stopPropagation() : null}
+              className="material-icons-outlined nav-icon"
+            >
               delete_outline
             </span>
           </button>
@@ -93,12 +144,14 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
             <button
               title="Restore"
               className="action-btn"
+              disabled={restoreBtnDisable}
               onClick={restoreNoteFromTrash}
             >
-              <span className="material-icons-outlined nav-icon">
-                <span className="material-icons-outlined nav-icon">
-                  restore_from_trash
-                </span>
+              <span
+                onClick={restoreBtnDisable ? (e) => e.stopPropagation() : null}
+                className="material-icons-outlined nav-icon"
+              >
+                restore_from_trash
               </span>
             </button>
           ) : null}
@@ -106,17 +159,29 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
             <button
               title="Archive"
               className="action-btn"
+              disabled={archiveBtnDisable}
               onClick={addNoteToArchive}
             >
-              <span className="material-icons-outlined nav-icon">archive</span>
+              <span
+                onClick={archiveBtnDisable ? (e) => e.stopPropagation() : null}
+                className="material-icons-outlined nav-icon"
+              >
+                archive
+              </span>
             </button>
           ) : (
             <button
               title="Un-Archive"
               className="action-btn"
+              disabled={unarchiveBtnDisable}
               onClick={restoreNoteFromArchive}
             >
-              <span className="material-icons-outlined nav-icon">
+              <span
+                onClick={
+                  unarchiveBtnDisable ? (e) => e.stopPropagation() : null
+                }
+                className="material-icons-outlined nav-icon"
+              >
                 unarchive
               </span>
             </button>

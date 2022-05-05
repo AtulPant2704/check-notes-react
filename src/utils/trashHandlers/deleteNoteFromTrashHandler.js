@@ -1,8 +1,14 @@
 import { toast } from "react-toastify";
 import { deleteNoteFromTrashService } from "../../services";
 
-const deleteNoteFromTrashHandler = async (token, note, trashDispatch) => {
+const deleteNoteFromTrashHandler = async (
+  token,
+  note,
+  trashDispatch,
+  setDeleteBtnDisable
+) => {
   try {
+    setDeleteBtnDisable(true);
     const response = await deleteNoteFromTrashService(token, note);
     if (response.status === 200) {
       trashDispatch({
@@ -15,6 +21,8 @@ const deleteNoteFromTrashHandler = async (token, note, trashDispatch) => {
     }
   } catch (error) {
     toast.error(error.response.data.errors[0]);
+  } finally {
+    setDeleteBtnDisable(false);
   }
 };
 

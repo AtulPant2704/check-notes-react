@@ -5,9 +5,11 @@ const restoreNoteFromArchiveHandler = async (
   token,
   note,
   archiveDispatch,
-  notesDispatch
+  notesDispatch,
+  setUnarchiveBtnDisable
 ) => {
   try {
+    setUnarchiveBtnDisable(true);
     const response = await restoreNoteFromArchiveService(token, note);
     if (response.status === 200) {
       archiveDispatch({
@@ -24,6 +26,8 @@ const restoreNoteFromArchiveHandler = async (
     }
   } catch (error) {
     toast.error(error.response.data.errors[0]);
+  } finally {
+    setUnarchiveBtnDisable(false);
   }
 };
 

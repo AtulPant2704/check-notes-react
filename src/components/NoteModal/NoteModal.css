@@ -39,6 +39,18 @@
   border: 1px solid var(--secondary-color);
 }
 
+.note-content.red > .ql-snow {
+  background-color: #9d174d;
+}
+
+.note-content.blue > .ql-snow {
+  background-color: #0e7490;
+}
+
+.note-content.green > .ql-snow {
+  background-color: #15803d;
+}
+
 .ql-editor * {
   color: var(--secondary-color);
   font-size: 1rem;

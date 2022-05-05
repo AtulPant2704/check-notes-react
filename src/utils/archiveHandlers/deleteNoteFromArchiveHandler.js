@@ -5,9 +5,11 @@ const deleteNoteFromArchiveHandler = async (
   token,
   note,
   archiveDispatch,
-  trashDispatch
+  trashDispatch,
+  setDeleteBtnDisable
 ) => {
   try {
+    setDeleteBtnDisable(true);
     const response = await deleteNoteFromArchiveService(token, note);
     if (response.status === 200) {
       trashDispatch({
@@ -24,6 +26,8 @@ const deleteNoteFromArchiveHandler = async (
     }
   } catch (error) {
     toast.error(error.response.data.errors[0]);
+  } finally {
+    setDeleteBtnDisable(false);
   }
 };
 

@@ -36,12 +36,17 @@ const Notes = () => {
     sortPriorityBy
   );
 
+  const closeNoteModal = () => {
+    setEditNote(null);
+    setShowNoteModal(false);
+  };
+
   return (
     <>
       {showNoteModal ? (
         <section
           className="note-modal-backdrop"
-          onClick={() => setShowNoteModal(false)}
+          onClick={closeNoteModal}
         ></section>
       ) : null}
       {showNoteModal ? (
