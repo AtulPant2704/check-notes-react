@@ -9,6 +9,16 @@
   max-width: 20rem;
 }
 
+.note.green {
+  background-color: #15803d;
+}
+.note.blue {
+  background-color: #0e7490;
+}
+.note.red {
+  background-color: #9d174d;
+}
+
 .note > h2 {
   overflow: hidden;
   text-overflow: ellipsis;

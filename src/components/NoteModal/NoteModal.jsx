@@ -12,7 +12,7 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
       title: "",
       content: "",
       label: "",
-      color: "",
+      color: "Default",
       priority: "Low",
       isPinned: false,
     }
@@ -52,6 +52,8 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
     }
   };
 
+  console.log(newNote);
+
   return (
     <div className="add-note-container">
       <input
@@ -62,7 +64,11 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
         value={newNote.title}
         onChange={inputHandler}
       />
-      <RichTextEditor newNote={newNote} setNewNote={setNewNote} />
+      <RichTextEditor
+        className={newNote.color}
+        newNote={newNote}
+        setNewNote={setNewNote}
+      />
       <div className="add-note-footer">
         <div className="note-select">
           <div className="select-box">
@@ -112,9 +118,9 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
               onChange={inputHandler}
             >
               <option>Default</option>
-              <option value="Green">Green</option>
-              <option value="Blue">Blue</option>
-              <option value="Red">Red</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+              <option value="red">Red</option>
             </select>
           </div>
         </div>

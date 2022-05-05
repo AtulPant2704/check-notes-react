@@ -105,7 +105,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
   };
 
   return (
-    <div className="note" onClick={editNoteHandler}>
+    <div className={`note ${note.color}`} onClick={editNoteHandler}>
       <button
         className="pin-btn"
         title="Pin"
