@@ -10,7 +10,9 @@ import "./App.css";
 function App() {
   const location = useLocation();
   const { theme } = useTheme();
-  const { authState: token } = useAuth();
+  const {
+    authState: { token },
+  } = useAuth();
 
   return (
     <div

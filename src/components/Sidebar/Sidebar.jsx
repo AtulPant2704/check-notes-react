@@ -35,10 +35,10 @@ const SideBar = () => {
   };
 
   const logoutHandler = () => {
-    navigate("/");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     authDispatch({ type: "LOGOUT" });
+    navigate("/");
     toast.success("Successfully Logged Out");
   };
 
@@ -73,7 +73,9 @@ const SideBar = () => {
             <div className="nav-list">
               <div
                 onClick={() => routeHandler("/notes")}
-                className={`nav-link ${path === "/notes" ? "active" : ""}`}
+                className={`nav-link ${
+                  path === "/notes" || path === "/" ? "active" : ""
+                }`}
               >
                 <span
                   title="Notes"
