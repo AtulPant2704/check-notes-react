@@ -1,9 +1,17 @@
 import { useState } from "react";
-import { landingImage } from "../../assets";
+import { useTheme } from "../../context";
+import {
+  blueLanding,
+  greenLanding,
+  purpleLanding,
+  redLanding,
+  yellowLanding,
+} from "../../assets";
 import { LoginModal, SignupModal } from "../../components";
 import "./Landing.css";
 
 const Landing = () => {
+  const { theme } = useTheme();
   const [modalType, setModalType] = useState(null);
 
   return (
@@ -42,7 +50,17 @@ const Landing = () => {
         <div className="intro-img">
           <img
             className="img-responsive"
-            src={landingImage}
+            src={
+              theme === "blue"
+                ? blueLanding
+                : theme === "green"
+                ? greenLanding
+                : theme === "purple"
+                ? purpleLanding
+                : theme === "red"
+                ? redLanding
+                : yellowLanding
+            }
             alt="intro-note-image"
           />
         </div>
