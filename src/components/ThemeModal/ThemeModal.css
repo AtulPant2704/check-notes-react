@@ -1,0 +1,68 @@
+.theme-backdrop {
+  position: fixed;
+  display: block;
+  z-index: 2;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.theme-modal {
+  position: fixed;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22rem;
+  background-color: var(--container-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.theme-container {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.theme-container .theme-btn {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  border-width: 0;
+}
+
+.theme-container .theme-btn-active {
+  border: 3px solid white;
+}
+
+.theme-container .blue-btn {
+  background-color: #5757e0;
+}
+
+.theme-container .yellow-btn {
+  background-color: #e0b757;
+}
+
+.theme-container .purple-btn {
+  background-color: #b557e0;
+}
+
+.theme-container .red-btn {
+  background-color: #e05757;
+}
+
+.theme-container .green-btn {
+  background-color: #57e062;
+}
+
+.theme-change-btn {
+  width: fit-content;
+  align-self: flex-end;
+  padding: 5px 10px;
+  font-size: 1rem;
+}
