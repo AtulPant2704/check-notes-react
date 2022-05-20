@@ -6,7 +6,7 @@ import {
   sortNotesByDate,
   sortNotesByPriority,
 } from "../../utils";
-import { Note, NoteModal, SideBar } from "../../components";
+import { Note, NoteModal } from "../../components";
 import { Filter } from "./components/Filter";
 import "./Notes.css";
 
@@ -56,7 +56,6 @@ const Notes = () => {
           setEditNote={setEditNote}
         />
       ) : null}
-      <SideBar />
 
       <main className="main">
         <section className="search-filter-section">

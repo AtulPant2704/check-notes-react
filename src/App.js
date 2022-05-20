@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useTheme, useAuth } from "./context";
+import { useTheme } from "./context";
 import { ToastContainer } from "react-toastify";
 import { RequiresAuth } from "./RequiresAuth";
 import { SideBar } from "./components";
@@ -10,9 +10,6 @@ import "./App.css";
 function App() {
   const location = useLocation();
   const { theme } = useTheme();
-  const {
-    authState: { token },
-  } = useAuth();
 
   return (
     <div
@@ -43,14 +40,15 @@ function App() {
         pauseOnHover
       />
 
-      {location.pathname.includes("/labels") ||
+      {location.pathname === "/notes" ||
+      location.pathname.includes("/labels") ||
       location.pathname === "/archive" ||
       location.pathname === "/trash" ? (
         <SideBar />
       ) : null}
 
       <Routes>
-        <Route path="/" element={token ? <Notes /> : <Landing />} />
+        <Route path="/" element={<Landing />} />
         <Route
           path="/notes"
           element={

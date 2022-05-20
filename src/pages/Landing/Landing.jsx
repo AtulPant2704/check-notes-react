@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useTheme } from "../../context";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTheme, useAuth } from "../../context";
 import {
   blueLanding,
   greenLanding,
@@ -11,8 +12,18 @@ import { LoginModal, SignupModal } from "../../components";
 import "./Landing.css";
 
 const Landing = () => {
+  const navigate = useNavigate();
   const { theme } = useTheme();
+  const {
+    authState: { token },
+  } = useAuth();
   const [modalType, setModalType] = useState(null);
+
+  useEffect(() => {
+    if (token) {
+      navigate("/notes");
+    }
+  }, []);
 
   return (
     <>
