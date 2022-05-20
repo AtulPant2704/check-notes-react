@@ -121,7 +121,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
           push_pin
         </span>
       </button>
-      <h2>{note.title}</h2>
+      <h3>{note.title}</h3>
       {ReactHtmlParser(note.content)}
       <div className="note-footer">
         <p className="note-date">{getDateString(note.date)}</p>

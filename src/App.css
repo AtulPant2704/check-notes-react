@@ -51,7 +51,9 @@ h5 {
   color: var(--title-color);
 }
 
-p {
+p,
+ul,
+li {
   color: var(--text-color);
 }
 
