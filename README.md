@@ -83,7 +83,7 @@ Check Notes is an app for Notes enthusiast who likes to organize each of their t
 ## Desktop Version
 
 <p align="center">
-  <img width="100%" src="./src/assets/checkmateVideo.gif" alt="CheckMate Video"/>
+  <img width="100%" src="./src/assets/check-notes.gif" alt="Check Notes"/>
 </p>
 
 ---
