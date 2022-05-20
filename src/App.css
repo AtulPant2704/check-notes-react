@@ -1,7 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
-:root {
-  --hue-color: 42; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
+.blue-theme {
+  --hue-color: 240;
+}
+
+.yellow-theme {
+  --hue-color: 42;
+}
+
+.purple-theme {
+  --hue-color: 281;
+}
+
+.red-theme {
+  --hue-color: 0;
+}
+
+.green-theme {
+  --hue-color: 125;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--container-color);
   --primary-color: hsl(var(--hue-color), 69%, 61%);
   --primary-color-second: hsl(var(--hue-color), 30%, 8%);
   --primary-hover-color: hsl(var(--hue-color), 57%, 53%);
@@ -15,19 +41,6 @@
   --toastify-color-success: #558d14;
   --toastify-color-warning: #ff9204;
   --toastify-color-error: #d61010;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  background-color: var(--container-color);
-}
-
-#root {
-  height: 100%;
-}
-
-.App {
-  height: 100%;
 }
 
 h1,
@@ -52,9 +65,9 @@ button {
 }
 
 .page-title {
+  padding-top: 2rem;
   color: var(--title-color);
   text-align: center;
-  margin-top: 2rem;
 }
 
 iframe {

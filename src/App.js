@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useTheme, useAuth } from "./context";
 import { ToastContainer } from "react-toastify";
 import { RequiresAuth } from "./RequiresAuth";
 import { SideBar } from "./components";
@@ -8,9 +9,27 @@ import "./App.css";
 
 function App() {
   const location = useLocation();
+  const { theme } = useTheme();
+  const {
+    authState: { token },
+  } = useAuth();
 
   return (
-    <div className="App">
+    <div
+      className={`App ${
+        theme === "blue"
+          ? "blue-theme"
+          : theme === "yellow"
+          ? "yellow-theme"
+          : theme === "purple"
+          ? "purple-theme"
+          : theme === "red"
+          ? "red-theme"
+          : theme === "green"
+          ? "green-theme"
+          : ""
+      }`}
+    >
       <ToastContainer
         position="bottom-right"
         autoClose={3000}
@@ -24,15 +43,14 @@ function App() {
         pauseOnHover
       />
 
-      {location.pathname === "/notes" ||
-      location.pathname.includes("/labels") ||
+      {location.pathname.includes("/labels") ||
       location.pathname === "/archive" ||
       location.pathname === "/trash" ? (
         <SideBar />
       ) : null}
 
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={token ? <Notes /> : <Landing />} />
         <Route
           path="/notes"
           element={

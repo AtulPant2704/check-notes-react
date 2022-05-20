@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth, useLabels } from "../../context";
 import { AddLabelModal } from "../AddLabelModal/AddLabelModal";
+import { ThemeModal } from "../ThemeModal/ThemeModal";
 import "./Sidebar.css";
 
 const SideBar = () => {
@@ -11,6 +12,7 @@ const SideBar = () => {
   const [sideExpand, setSideExpand] = useState(false);
   const [labelCollapse, setLabelCollapse] = useState(false);
   const [showLabelModal, setShowLabelModal] = useState(false);
+  const [showThemeModal, setShowThemeModal] = useState(false);
   const { authDispatch } = useAuth();
   const {
     labelsState: { labels },
@@ -33,10 +35,10 @@ const SideBar = () => {
   };
 
   const logoutHandler = () => {
-    navigate("/");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     authDispatch({ type: "LOGOUT" });
+    navigate("/");
     toast.success("Successfully Logged Out");
   };
 
@@ -46,6 +48,12 @@ const SideBar = () => {
         <AddLabelModal
           showLabelModal={showLabelModal}
           setShowLabelModal={setShowLabelModal}
+        />
+      ) : null}
+      {showThemeModal ? (
+        <ThemeModal
+          showThemeModal={showThemeModal}
+          setShowThemeModal={setShowThemeModal}
         />
       ) : null}
       <header className={`nav-header ${sideExpand ? "expander" : ""}`}>
@@ -65,7 +73,9 @@ const SideBar = () => {
             <div className="nav-list">
               <div
                 onClick={() => routeHandler("/notes")}
-                className={`nav-link ${path === "/notes" ? "active" : ""}`}
+                className={`nav-link ${
+                  path === "/notes" || path === "/" ? "active" : ""
+                }`}
               >
                 <span
                   title="Notes"
@@ -144,6 +154,15 @@ const SideBar = () => {
                   delete_outline
                 </span>
                 <span className="nav-name">Trash</span>
+              </div>
+              <div onClick={() => setShowThemeModal(true)} className="nav-link">
+                <span
+                  title="Theme"
+                  className="material-icons-outlined nav-icon"
+                >
+                  palette
+                </span>
+                <span className="nav-name">Theme</span>
               </div>
             </div>
           </div>

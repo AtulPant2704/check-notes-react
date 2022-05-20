@@ -10,6 +10,7 @@ import {
   TrashProvider,
   LabelsProvider,
   FilterProvider,
+  ThemeProvider,
 } from "./context";
 
 // Call make Server
@@ -18,19 +19,21 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <NotesProvider>
-        <ArchiveProvider>
-          <TrashProvider>
-            <LabelsProvider>
-              <FilterProvider>
-                <Router>
-                  <App />
-                </Router>
-              </FilterProvider>
-            </LabelsProvider>
-          </TrashProvider>
-        </ArchiveProvider>
-      </NotesProvider>
+      <ThemeProvider>
+        <NotesProvider>
+          <ArchiveProvider>
+            <TrashProvider>
+              <LabelsProvider>
+                <FilterProvider>
+                  <Router>
+                    <App />
+                  </Router>
+                </FilterProvider>
+              </LabelsProvider>
+            </TrashProvider>
+          </ArchiveProvider>
+        </NotesProvider>
+      </ThemeProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
