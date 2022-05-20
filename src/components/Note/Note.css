@@ -19,7 +19,7 @@
   background-color: #9d174d;
 }
 
-.note > h2 {
+.note > h3 {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -31,6 +31,11 @@
 
 .note > p {
   display: none;
+}
+
+.note > ol,
+ul {
+  padding-left: 1rem;
 }
 
 .note > p:first-of-type {
