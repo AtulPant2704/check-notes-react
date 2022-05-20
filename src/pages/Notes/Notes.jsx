@@ -5,6 +5,7 @@ import {
   getPinnedAndUnpinnedNotes,
   sortNotesByDate,
   sortNotesByPriority,
+  searchNoteHandler,
 } from "../../utils";
 import { Note, NoteModal } from "../../components";
 import { Filter } from "./components/Filter";
@@ -14,6 +15,7 @@ const Notes = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [editNote, setEditNote] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
   const {
     authState: { token },
   } = useAuth();
@@ -35,6 +37,8 @@ const Notes = () => {
     sortedDateNotes,
     sortPriorityBy
   );
+
+  const searchedNotes = searchNoteHandler(notes, searchValue);
 
   const closeNoteModal = () => {
     setEditNote(null);
@@ -61,7 +65,13 @@ const Notes = () => {
         <section className="search-filter-section">
           <div className="search">
             <span className="material-icons-outlined btn-search">search</span>
-            <input type="text" placeholder="Search" className="input-search" />
+            <input
+              type="text"
+              placeholder="Search"
+              className="input-search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
           </div>
           <span
             className="material-icons-outlined btn-filter"
@@ -90,27 +100,46 @@ const Notes = () => {
 
         <section className="notes-display-section">
           <div className="notes-container">
-            {pinnedNotes.map((note) => (
-              <Note
-                key={note._id}
-                note={note}
-                setShowNoteModal={setShowNoteModal}
-                setEditNote={setEditNote}
-              />
-            ))}
-            {sortedPriorityNotes.map((note) => (
-              <Note
-                key={note._id}
-                note={note}
-                setShowNoteModal={setShowNoteModal}
-                setEditNote={setEditNote}
-              />
-            ))}
-            {pinnedNotes.length === 0 && unPinnedNotes.length === 0 ? (
-              <section className="empty-label-notes">
-                <h3>You have not added any notes till now.</h3>
-              </section>
-            ) : null}
+            {searchValue !== "" ? (
+              searchedNotes.length > 0 ? (
+                searchedNotes.map((note) => (
+                  <Note
+                    key={note._id}
+                    note={note}
+                    setShowNoteModal={setShowNoteModal}
+                    setEditNote={setEditNote}
+                  />
+                ))
+              ) : (
+                <section className="empty-label-notes">
+                  <h3>No such note exist.</h3>
+                </section>
+              )
+            ) : (
+              <>
+                {pinnedNotes.map((note) => (
+                  <Note
+                    key={note._id}
+                    note={note}
+                    setShowNoteModal={setShowNoteModal}
+                    setEditNote={setEditNote}
+                  />
+                ))}
+                {sortedPriorityNotes.map((note) => (
+                  <Note
+                    key={note._id}
+                    note={note}
+                    setShowNoteModal={setShowNoteModal}
+                    setEditNote={setEditNote}
+                  />
+                ))}
+                {pinnedNotes.length === 0 && unPinnedNotes.length === 0 ? (
+                  <section className="empty-label-notes">
+                    <h3>You have not added any notes till now.</h3>
+                  </section>
+                ) : null}
+              </>
+            )}
           </div>
         </section>
       </main>
