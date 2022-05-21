@@ -24,7 +24,7 @@ Check Notes is an app for Notes enthusiast who likes to organize each of their t
 - Labels Management
   - User can add a Label to any note
   - New labels can also be created
-- User can add between 5 themes of his app
+- User can choose between 5 themes for his app
 - Filter Videos by Labels
 - Sort Videos by Priority and Date
 - Search Notes by Title as well as description
