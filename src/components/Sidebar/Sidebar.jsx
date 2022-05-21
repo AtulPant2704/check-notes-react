@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth, useLabels } from "../../context";
@@ -26,7 +26,6 @@ const SideBar = () => {
 
   const routeHandler = (path) => {
     navigate(path);
-    setSideExpand(false);
   };
 
   const labelsCollapseHandler = () => {
@@ -41,6 +40,11 @@ const SideBar = () => {
     navigate("/");
     toast.success("Successfully Logged Out");
   };
+
+  useEffect(() => {
+    setLabelCollapse(false);
+    setSideExpand(false);
+  }, [path]);
 
   return (
     <>
