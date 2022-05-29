@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNotes } from "../../context";
+import { useParams, Navigate } from "react-router-dom";
+import { useNotes, useLabels } from "../../context";
 import { Note, NoteModal } from "../../components";
 import "./Label.css";
 
@@ -11,11 +11,16 @@ const Label = () => {
   const {
     notesState: { notes },
   } = useNotes();
+  const {
+    labelsState: { labels },
+  } = useLabels();
 
   const closeNoteModal = () => {
     setEditNote(null);
     setShowNoteModal(false);
   };
+
+  const doesLabelExist = labels.some((label) => label === labelName);
 
   return (
     <>
@@ -33,27 +38,31 @@ const Label = () => {
         />
       ) : null}
 
-      <main className="label-page">
-        <h2 className="page-title">{labelName} Notes</h2>
-        {notes.length > 0 ? (
-          <section className="label-notes-container">
-            {notes
-              .filter((note) => note.label === labelName)
-              .map((note) => (
-                <Note
-                  key={note._id}
-                  note={note}
-                  setShowNoteModal={setShowNoteModal}
-                  setEditNote={setEditNote}
-                />
-              ))}
-          </section>
-        ) : (
-          <section className="empty-label-notes">
-            <h3>This label does not have any notes.</h3>
-          </section>
-        )}
-      </main>
+      {doesLabelExist ? (
+        <main className="label-page">
+          <h2 className="page-title">{labelName} Notes</h2>
+          {notes.length > 0 ? (
+            <section className="label-notes-container">
+              {notes
+                .filter((note) => note.label === labelName)
+                .map((note) => (
+                  <Note
+                    key={note._id}
+                    note={note}
+                    setShowNoteModal={setShowNoteModal}
+                    setEditNote={setEditNote}
+                  />
+                ))}
+            </section>
+          ) : (
+            <section className="empty-label-notes">
+              <h3>This label does not have any notes.</h3>
+            </section>
+          )}
+        </main>
+      ) : (
+        <Navigate to="/*" />
+      )}
     </>
   );
 };

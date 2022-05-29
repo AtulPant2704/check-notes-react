@@ -52,8 +52,6 @@ const NoteModal = ({ setShowNoteModal, editNote, setEditNote }) => {
     }
   };
 
-  console.log(newNote);
-
   return (
     <div className="add-note-container">
       <input
