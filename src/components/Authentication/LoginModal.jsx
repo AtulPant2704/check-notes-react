@@ -28,6 +28,7 @@ const LoginModal = ({ setModalType }) => {
   const guestUserHandler = (event) => {
     event.preventDefault();
     setUser(guestUser);
+    setSaveUser(true);
   };
 
   const loginHandler = async (event) => {
