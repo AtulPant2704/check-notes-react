@@ -1,13 +1,28 @@
+import { useRef, useEffect } from "react";
 import { useFilter } from "../../../context";
 
-const Filter = () => {
+const Filter = ({ showFilters, setShowFilters }) => {
+  const filterRef = useRef();
   const {
     filterState: { sortDateBy, sortPriorityBy },
     filterDispatch,
   } = useFilter();
 
+  const closeFilters = (e) => {
+    if (!filterRef.current.contains(e.target)) {
+      setShowFilters(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", closeFilters);
+    return () => {
+      document.removeEventListener("click", closeFilters);
+    };
+  }, []);
+
   return (
-    <>
+    <div className="filter-container filter-container-active" ref={filterRef}>
       <div className="filter-header">
         <h2 className="filter-heading">Sort</h2>
         <button
@@ -71,7 +86,7 @@ const Filter = () => {
           <label htmlFor="low-to-high">Low to High</label>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

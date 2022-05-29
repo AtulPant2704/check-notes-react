@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuth, useNotes, useFilter } from "../../context";
 import {
   getNotesHandler,
@@ -81,13 +81,9 @@ const Notes = () => {
           </span>
         </section>
 
-        <div
-          className={`filter-container ${
-            showFilters ? "filter-container-active" : ""
-          }`}
-        >
-          <Filter />
-        </div>
+        {showFilters ? (
+          <Filter showFilters={showFilters} setShowFilters={setShowFilters} />
+        ) : null}
 
         <section className="add-note-section">
           <button
