@@ -4,3 +4,4 @@ Minor Refactors:-
 - refactor: Decrease toast time
 - fix: Navigate to Error-404 page if label does not exist
 - feat: Close filters on outside click
+- refactor: colors of note
