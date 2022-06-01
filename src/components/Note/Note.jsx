@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { useLocation } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
 import { useAuth, useNotes, useArchive, useTrash } from "../../context";
@@ -104,10 +104,17 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
     setShowNoteModal(true);
   };
 
+  const getTextColor = (color) => {
+    if (color !== "Default") {
+      return "note-text-black";
+    }
+    return "";
+  };
+
   return (
     <div className={`note ${note.color}`} onClick={editNoteHandler}>
       <button
-        className="pin-btn"
+        className={`pin-btn ${getTextColor(note.color)}`}
         title="Pin"
         disabled={pinBtnDisable}
         onClick={pinNote}
@@ -121,15 +128,21 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
           push_pin
         </span>
       </button>
-      <h3>{note.title}</h3>
-      {ReactHtmlParser(note.content)}
+      <h3 className={`${getTextColor(note.color)}`}>{note.title}</h3>
+      <Fragment className={`${getTextColor(note.color)}`}>
+        {ReactHtmlParser(note.content)}
+      </Fragment>
       <div className="note-footer">
-        <p className="note-date">{getDateString(note.date)}</p>
-        <span className="note-priority">{note.priority.toUpperCase()}</span>
+        <p className={`note-date ${getTextColor(note.color)}`}>
+          {getDateString(note.date)}
+        </p>
+        <span className={`note-priority ${getTextColor(note.color)}`}>
+          {note.priority.toUpperCase()}
+        </span>
         <div className="note-action-btns">
           <button
             title="Delete"
-            className="action-btn"
+            className={`action-btn ${getTextColor(note.color)}`}
             disabled={deleteBtnDisable}
             onClick={addNoteToTrash}
           >
@@ -143,7 +156,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
           {pathname === "/trash" ? (
             <button
               title="Restore"
-              className="action-btn"
+              className={`action-btn ${getTextColor(note.color)}`}
               disabled={restoreBtnDisable}
               onClick={restoreNoteFromTrash}
             >
@@ -158,7 +171,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
           {pathname === "/trash" ? null : pathname !== "/archive" ? (
             <button
               title="Archive"
-              className="action-btn"
+              className={`action-btn ${getTextColor(note.color)}`}
               disabled={archiveBtnDisable}
               onClick={addNoteToArchive}
             >
@@ -172,7 +185,7 @@ const Note = ({ note, setShowNoteModal, setEditNote }) => {
           ) : (
             <button
               title="Un-Archive"
-              className="action-btn"
+              className={`action-btn ${getTextColor(note.color)}`}
               disabled={unarchiveBtnDisable}
               onClick={restoreNoteFromArchive}
             >

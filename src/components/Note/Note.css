@@ -10,13 +10,26 @@
 }
 
 .note.green {
-  background-color: #15803d;
+  background-color: var(--note-green);
 }
 .note.blue {
-  background-color: #0e7490;
+  background-color: var(--note-blue);
 }
 .note.red {
-  background-color: #9d174d;
+  background-color: var(--note-red);
+}
+
+.note .note-text-black {
+  color: black;
+}
+
+.note .note-text-black + p {
+  color: black;
+}
+
+.note .note-text-black + ol,
+ul {
+  color: black;
 }
 
 .note > h3 {

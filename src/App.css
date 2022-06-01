@@ -41,6 +41,9 @@
   --toastify-color-success: #558d14;
   --toastify-color-warning: #ff9204;
   --toastify-color-error: #d61010;
+  --note-red: #ff9d95;
+  --note-green: #b6fb64;
+  --note-blue: #cbf0f8;
 }
 
 h1,
